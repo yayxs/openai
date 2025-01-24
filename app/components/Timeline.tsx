@@ -1,9 +1,9 @@
 import { ModelRelease } from '../data/models';
 
 export default function Timeline({ releases }: { releases: ModelRelease[] }) {
-  // 按日期排序
+  // 按日期倒序排序，最新的在前
   const sortedReleases = [...releases].sort((a, b) => 
-    new Date(a.date).getTime() - new Date(b.date).getTime()
+    new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
   return (
