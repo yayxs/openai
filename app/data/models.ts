@@ -6,13 +6,8 @@ export interface ModelRelease {
 
 export const modelReleases: ModelRelease[] = [
   {
-    date: "2022-12-21",
-    modelName: "Claude (早期版本)",
-    company: "Anthropic"
-  },
-  {
     date: "2023-03-14",
-    modelName: "Claude",
+    modelName: "Claude 1",
     company: "Anthropic"
   },
   {
@@ -21,13 +16,18 @@ export const modelReleases: ModelRelease[] = [
     company: "Anthropic"
   },
   {
-    date: "2023-08-15",
-    modelName: "Claude 2.0",
+    date: "2023-11-21",
+    modelName: "Claude 2.1",
     company: "Anthropic"
   },
   {
-    date: "2023-11-21",
-    modelName: "Claude 2.1",
+    date: "2024-01-16",
+    modelName: "Claude 3 Haiku",
+    company: "Anthropic"
+  },
+  {
+    date: "2024-01-16",
+    modelName: "Claude 3 Sonnet",
     company: "Anthropic"
   },
   {
