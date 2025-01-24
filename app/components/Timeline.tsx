@@ -7,18 +7,32 @@ export default function Timeline({ releases }: { releases: ModelRelease[] }) {
   );
 
   return (
-    <div className="max-w-2xl mx-auto py-8">
-      {sortedReleases.map((release, index) => (
-        <div key={index} className="flex gap-4 mb-8">
-          <div className="w-32 text-gray-500">
-            {new Date(release.date).toLocaleDateString()}
+    <div className="max-w-3xl mx-auto py-8">
+      <div className="relative">
+        {/* 垂直线 */}
+        <div className="absolute left-16 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+        
+        {sortedReleases.map((release, index) => (
+          <div key={index} className="relative flex gap-4 mb-12">
+            {/* 时间点 */}
+            <div className="w-32 text-gray-500 text-sm pt-1">
+              {new Date(release.date).toLocaleDateString('zh-CN')}
+            </div>
+            
+            {/* 圆点 */}
+            <div className="absolute left-16 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white"></div>
+            
+            {/* 内容 */}
+            <div className="flex-1 ml-8 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+              <div className="font-bold text-lg text-blue-600">{release.modelName}</div>
+              <div className="text-sm text-gray-600 mb-2">{release.company}</div>
+              {release.description && (
+                <div className="text-gray-700 mt-2">{release.description}</div>
+              )}
+            </div>
           </div>
-          <div className="flex-1">
-            <div className="font-bold">{release.modelName}</div>
-            <div className="text-sm text-gray-600">{release.company}</div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 } 
