@@ -8,10 +8,15 @@ export interface ModelRelease {
 
 export const modelReleases: ModelRelease[] = [
   {
-    date: "2025-01-20",
-    modelName: "DeepSeek-R1",
-    company: "DeepSeek",
-    description: "开源大语言模型，支持思维链输出",
-    isOpenSource: true
+    date: '2025-01-20',
+    modelName: 'DeepSeek-R1',
+    company: 'DeepSeek',
+    description: `open-sourced and with fully open reasoning tokens`,
   },
-]; 
+  {
+    date: '2025-01-31',
+    modelName: 'o3-mini o3-mini-2025-01-31',
+    company: 'OpenAI',
+    description: ``,
+  },
+];
