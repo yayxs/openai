@@ -6,20 +6,14 @@ interface SidebarProps {
   companies: string[];
   selectedCompanies: string[];
   onCompanyToggle: (company: string) => void;
-  onSelectAll: () => void;
 }
 
-export default function Sidebar({
-  companies,
-  selectedCompanies,
-  onCompanyToggle,
-  onSelectAll,
-}: SidebarProps) {
+export default function Sidebar({ companies, selectedCompanies, onCompanyToggle }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      {/* 移动端菜单按钮 */}
+      {/* Mobile menu toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="md:hidden fixed top-4 right-4 z-50 bg-blue-500 text-white p-2 rounded-md"
@@ -34,47 +28,38 @@ export default function Sidebar({
         </svg>
       </button>
 
-      {/* 侧边栏 */}
+      {/* Sidebar */}
       <aside
         className={`
-          bg-white border-r w-64 shrink-0
+          bg-white border-r w-64 shrink-0 shadow-lg
           md:block
           ${isOpen ? 'block fixed inset-y-0 left-0 z-40' : 'hidden'}
         `}
       >
         <div className="h-full flex flex-col">
-          <div className="p-4">
-            <h2 className="text-lg font-bold mb-4">模型提供方</h2>
-
-            {/* 全选选项 */}
-            <div className="mb-4">
-              <label className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                <input
-                  type="checkbox"
-                  checked={selectedCompanies.length === companies.length}
-                  onChange={onSelectAll}
-                  className="h-4 w-4 text-blue-600 rounded"
-                />
-                <span className="text-sm font-medium">全部</span>
-              </label>
-            </div>
-
-            <div className="border-t mb-4"></div>
-
-            {/* 公司列表 */}
-            <div className="space-y-1">
+          <div className="p-6">
+            <h2 className="text-xl font-bold mb-6 text-gray-800">Providers</h2>
+            <div className="space-y-2">
               {companies.map((company) => (
                 <label
                   key={company}
-                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                  className={`
+                    flex items-center space-x-3 p-3 rounded-lg cursor-pointer
+                    transition-all duration-200
+                    ${
+                      selectedCompanies.includes(company)
+                        ? 'bg-blue-50 text-blue-600'
+                        : 'hover:bg-gray-50 text-gray-700'
+                    }
+                  `}
                 >
                   <input
                     type="checkbox"
                     checked={selectedCompanies.includes(company)}
                     onChange={() => onCompanyToggle(company)}
-                    className="h-4 w-4 text-blue-600 rounded"
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                  <span className="text-sm">{company}</span>
+                  <span className="text-sm font-medium">{company}</span>
                 </label>
               ))}
             </div>

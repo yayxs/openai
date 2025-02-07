@@ -1,42 +1,48 @@
 import { ModelRelease } from '../data/models';
 
 export default function Timeline({ releases }: { releases: ModelRelease[] }) {
-  // 按日期倒序排序，最新的在前
-  const sortedReleases = [...releases].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+  // Sort releases by date (newest first)
+  const sortedReleases = [...releases].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
   return (
-    <div className="relative py-8">
-      {/* 垂直线 */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-      
+    <div className="relative py-12">
+      {/* Vertical line with gradient */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-purple-500"></div>
+
       {sortedReleases.map((release, index) => (
-        <div key={index} className="relative flex items-center mb-12">
-          {/* 时间点 */}
-          <div className="w-1/2 pr-8 text-right">
-            <div className="text-lg font-medium text-gray-600">
-              {new Date(release.date).toLocaleDateString('zh-CN')}
-            </div>
+        <div
+          key={index}
+          className="mb-16 flex flex-col items-center transform hover:scale-102 transition-transform duration-200"
+        >
+          {/* Date display with gradient background */}
+          <div className="mb-3 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+            <span className="text-white font-medium">
+              {new Date(release.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </span>
           </div>
-          
-          {/* 圆点 */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white z-10"></div>
-          
-          {/* 内容 */}
-          <div className="w-1/2 pl-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center gap-2 mb-2">
-                <h3 className="text-xl font-bold">{release.modelName}</h3>
-                <span className="text-gray-500">({release.company})</span>
-                {release.isOpenSource && (
-                  <span className="px-2 py-0.5 text-xs bg-green-100 text-green-800 rounded-full">
-                    开源
-                  </span>
-                )}
-              </div>
+
+          {/* Animated dot */}
+          <div className="relative w-full flex justify-center">
+            <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-4 border-white shadow-lg z-10 absolute left-1/2 transform -translate-x-1/2 hover:scale-150 transition-transform duration-200"></div>
+          </div>
+
+          {/* Content Card with hover effects */}
+          <div className="mt-6 w-full max-w-md transform transition-all duration-200 hover:-translate-y-1">
+            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl border border-gray-100">
+              <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {release.modelName}
+              </h3>
+              <span className="inline-block px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm mb-3">
+                {release.company}
+              </span>
               {release.description && (
-                <p className="text-gray-600">{release.description}</p>
+                <p className="text-gray-600 leading-relaxed">{release.description}</p>
               )}
             </div>
           </div>
@@ -44,4 +50,4 @@ export default function Timeline({ releases }: { releases: ModelRelease[] }) {
       ))}
     </div>
   );
-} 
+}

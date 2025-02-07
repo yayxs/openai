@@ -15,8 +15,8 @@ export const modelReleases: ModelRelease[] = [
   },
   {
     date: '2025-01-31',
-    modelName: 'o3-mini o3-mini-2025-01-31',
+    modelName: 'o3-mini or o3-mini-2025-01-31',
     company: 'OpenAI',
-    description: ``,
+    description: `reasoning`,
   },
 ];
