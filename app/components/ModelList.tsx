@@ -14,9 +14,7 @@ export default function ModelList({ releases }: { releases: ModelRelease[] }) {
         <div key={index} className="bg-white p-4 rounded-lg shadow border">
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold">{release.modelName}</span>
-            <span className="text-sm text-gray-500">
-              {new Date(release.date).toLocaleDateString('zh-CN')}
-            </span>
+            <span className="text-sm text-gray-500">{release.date}</span>
           </div>
           <div className="mt-2">
             <p className="text-gray-600">{release.company}</p>

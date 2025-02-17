@@ -18,13 +18,7 @@ export default function Timeline({ releases }: { releases: ModelRelease[] }) {
         >
           {/* Date display with gradient background */}
           <div className="mb-3 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
-            <span className="text-white font-medium">
-              {new Date(release.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}
-            </span>
+            <span className="text-white font-medium">{release.date}</span>
           </div>
 
           {/* Animated dot */}

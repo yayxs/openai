@@ -22,9 +22,7 @@ export default function ModelTable({ releases }: { releases: ModelRelease[] }) {
         <tbody>
           {sortedReleases.map((release, index) => (
             <tr key={index}>
-              <td className="border px-4 py-2">
-                {new Date(release.date).toLocaleDateString('zh-CN')}
-              </td>
+              <td className="border px-4 py-2">{release.date}</td>
               <td className="border px-4 py-2">{release.modelName}</td>
               <td className="border px-4 py-2">{release.company}</td>
               <td className="border px-4 py-2">{release.description}</td>
