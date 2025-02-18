@@ -19,4 +19,10 @@ export const modelReleases: ModelRelease[] = [
     company: 'OpenAI',
     description: `reasoning`,
   },
+  {
+    date: '2025-02-18',
+    modelName: 'Grok3',
+    company: 'xAI',
+    description: ``,
+  },
 ];
