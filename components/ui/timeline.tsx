@@ -119,8 +119,9 @@ function TimelineHeader({
 }
 
 // TimelineIndicator
+// eslint-disable-next-line  @typescript-eslint/no-empty-object-type
 interface TimelineIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
-  // 移除未使用的 asChild 属性
+  // 无需额外属性
 }
 
 function TimelineIndicator({

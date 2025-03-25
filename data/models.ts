@@ -25,4 +25,10 @@ export const modelReleases: ModelRelease[] = [
     company: "xAI",
     description: ``,
   },
+  {
+    date: "2025-03-24",
+    modelName: "DeepSeek-V3-0324",
+    company: "DeepSeek",
+    description: ``,
+  },
 ];

@@ -1,40 +1,10 @@
-# Model Timing
+# Awesome MCP
 
 [中文文档](./README.zh-CN.md)
 
-A timeline visualization project for tracking the evolution of Large Language Models (LLMs) across different companies.
+## Model Timing
 
-## Overview
-
-As AI technology rapidly evolves, major tech companies continue to release increasingly powerful language models. While newer models generally offer improved capabilities, each model has its unique characteristics and use cases. This project aims to:
-
-- 📅 Present model releases in chronological order
-- 🏢 Categorize models by company
-- 📊 Provide basic information and specifications for each model
-- 📈 Visualize industry development trends
-
-## Features
-
-- Interactive timeline display
-- Company-based model filtering
-- Detailed model information
-- Responsive design for all devices
-
-## Tech Stack
-
-- Next.js
-- TypeScript
-- Tailwind CSS
-
-
-
-## Contributing
-
-Contributions are welcome! Particularly in these areas:
-
-- Adding new model release information
-- Improving UI/UX
-- Adding new features
+Understanding `Timing`: In `Model Timing`, it refers to the release time of large language models, or the moment of excitement. In games, there is also a saying "catching the Timing," as models become more numerous and version commands more complex. Based on this background, we developed a website mainly to record the "model moments" of large language models, primarily in the form of a timeline, showcasing the updates from various companies regarding large language models as time progresses. We hope to "capture" the explosive moment of a model's release. This also helps in understanding the characteristics of each model, allowing for better application in work and life.
 
 ## License
 

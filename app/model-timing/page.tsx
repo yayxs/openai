@@ -3,6 +3,7 @@
 import { modelReleases } from "@/data/models";
 import { format } from "date-fns";
 import Link from "next/link";
+import Particles from "@/components/Particles/Particles";
 
 export default function ModelTimingPage() {
   // 导航项配置
@@ -17,15 +18,32 @@ export default function ModelTimingPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-100 font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen bg-slate-100 font-[family-name:var(--font-geist-sans)] relative">
+      {/* 粒子背景 */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Particles
+          particleColors={["#4F46E5", "#60A5FA", "#34D399"]}
+          particleCount={120}
+          particleSpread={12}
+          speed={0.06}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
+
       {/* 简单的头部导航栏 */}
-      <header className="bg-white border-b border-gray-200 shadow-sm">
+      <header className="relative z-10 bg-white bg-opacity-90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center sm:justify-between h-16 items-center">
             <div className="flex-shrink-0">
-              <span className="text-xl font-bold text-gray-900">
+              <Link
+                href="/"
+                className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+              >
                 Awesome MCP
-              </span>
+              </Link>
             </div>
             <nav className="hidden sm:ml-6 sm:flex sm:space-x-8">
               {navItems.map((item, index) => (
@@ -65,12 +83,12 @@ export default function ModelTimingPage() {
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto py-8 px-4 sm:px-0">
+      <main className="relative z-10 max-w-3xl mx-auto py-8 px-4 sm:px-0">
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800 text-center">
           AI 模型发布时间线
         </h1>
 
-        <div className="bg-white rounded-xl p-7 shadow-sm border border-gray-100">
+        <div className="bg-white bg-opacity-90 backdrop-blur-md rounded-xl p-7 shadow-sm border border-gray-100">
           <div className="space-y-10">
             {sortedReleases.map((release, index) => (
               <div key={index} className="relative pl-8">
