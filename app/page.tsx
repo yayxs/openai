@@ -39,8 +39,33 @@ export default function Home() {
     // 第四个格子 - xAI Grok系列
     [
       {
-        time: "2025年02月18日",
+        time: "2025年02月17日",
         name: "Grok3",
+        description: "",
+      },
+      {
+        time: "2014年12月12日",
+        name: "grok-2-1212/grok-2/grok-2-latest",
+        description: "截止日期为 2024 年 7 月 17 日",
+      },
+      {
+        time: "",
+        name: "grok-beta",
+        description: "grok-beta型号是早期型号，现已弃用",
+      },
+      {
+        time: "2024年08月12日",
+        name: "Grok2 Grok2 mini",
+        description: "",
+      },
+      {
+        time: "2024年03月28日",
+        name: "Grok1.5",
+        description: "",
+      },
+      {
+        time: "2023年11月03日",
+        name: "Grok1",
         description: "",
       },
     ],
@@ -254,18 +279,24 @@ export default function Home() {
 
           {/* 第二行第一列 - xAI Grok系列 */}
           <div className="border-r-1 border-gray-800 p-2 flex flex-col">
-            <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
-              <span className="mr-2 flex items-center">
-                <Image
-                  src="/xai.svg"
-                  alt="xAI Logo"
-                  width={20}
-                  height={20}
-                  className="mr-1"
-                />
-              </span>
-              <span className="text-[#000000]">xAI Grok</span>
-            </h3>
+            <Link
+              href="https://grok.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3 className="font-bold text-lg mb-2 px-2 flex items-center hover:underline">
+                <span className="mr-2 flex items-center">
+                  <Image
+                    src="/xai.svg"
+                    alt="xAI Logo"
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                </span>
+                <span className="text-[#000000]">xAI Grok</span>
+              </h3>
+            </Link>
             <div className="overflow-y-auto flex-1">
               <table className="w-full text-sm table-fixed">
                 <colgroup>
@@ -297,7 +328,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
+              <h3 className="font-bold text-lg mb-2 px-2 flex items-center hover:underline">
                 <span className="mr-2 flex items-center">
                   <Image
                     src="/deepseek-color.svg"
