@@ -28,21 +28,6 @@ export default function Home() {
         description: "",
       },
       {
-        time: "2025年03月11日",
-        name: "gpt-4o-mini-search-preview/gpt-4o-mini-search-preview-2025-03-11",
-        description: "",
-      },
-      {
-        time: "2025年03月11日",
-        name: "gpt-4o-search-preview/gpt-4o-search-preview-2025-03-11",
-        description: "",
-      },
-      {
-        time: "2025年03月11日",
-        name: "computer-use-preview/computer-use-preview-2025-03-11",
-        description: "",
-      },
-      {
         time: "2025年02月27日",
         name: "gpt-4.5-preview/gpt-4.5-preview-2025-02-27",
         description: "最大最能干聊天模型",
