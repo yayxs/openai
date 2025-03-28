@@ -23,9 +23,124 @@ export default function Home() {
     // 第二个格子 - OpenAI GPT系列
     [
       {
-        time: "2020年6月11日",
-        name: "gpt-3",
-        description: "1750亿参数的大型语言模型",
+        time: "2025年03月19日",
+        name: "o1-pro/o1-pro-2025-03-19",
+        description: "",
+      },
+      {
+        time: "2025年03月11日",
+        name: "gpt-4o-mini-search-preview/gpt-4o-mini-search-preview-2025-03-11",
+        description: "",
+      },
+      {
+        time: "2025年03月11日",
+        name: "gpt-4o-search-preview/gpt-4o-search-preview-2025-03-11",
+        description: "",
+      },
+      {
+        time: "2025年03月11日",
+        name: "computer-use-preview/computer-use-preview-2025-03-11",
+        description: "",
+      },
+      {
+        time: "2025年02月27日",
+        name: "gpt-4.5-preview/gpt-4.5-preview-2025-02-27",
+        description: "最大最能干聊天模型",
+      },
+      {
+        time: "2025年01月31日",
+        name: "o3-mini/o3-mini-2025-01-31",
+        description: "",
+      },
+      {
+        time: "2024年12月17日",
+        name: "o1/o1-2024-12-17",
+        description: "",
+      },
+      {
+        time: "2024年11月20日",
+        name: "gpt-4o/gpt-4o-2024-11-20",
+        description: "",
+      },
+      {
+        time: "2024年09月12日",
+        name: "o1-mini/o1-mini-2024-09-12",
+        description: "",
+      },
+      {
+        time: "2024年09月12日",
+        name: "o1-preview-2024-09-12",
+        description: "",
+      },
+      {
+        time: "2024年09月03日",
+        name: "chatgpt-4o-latest",
+        description:
+          "与其他 GPT-4o 模型不同，它更专注于对话生成，而非多模态或实时处理",
+      },
+      {
+        time: "2024年08月16日",
+        name: "gpt-4o/gpt-4o-2024-08-06",
+        description:
+          "这是 GPT-4o 的首个正式版本，支持文本、图像和音频输入，具有强大的多模态处理能力，相比 GPT-4o-mini，它在处理复杂任务时准确性更高，功能更全面",
+      },
+      {
+        time: "2024年07月18日",
+        name: "gpt-4o-mini/gpt-4o-mini-2024-07-18",
+        description:
+          "这是 GPT-4o-mini 的首个版本，专为高效、低成本的应用场景设计，支持文本和视觉输入",
+      },
+      {
+        time: "2024年05月13日",
+        name: "gpt-4o/gpt-4o-2024-05-13",
+        description: "",
+      },
+      {
+        time: "2024年04月09日",
+        name: "gpt-4-turbo-2024-04-09",
+        description: "这是GPT-4 Turbo的正式发布",
+      },
+      {
+        time: "2024年01月25日",
+        name: "gpt-3.5-turbo-0125",
+        description: "",
+      },
+      {
+        time: "2024年01月25日",
+        name: "gpt-4-0125-preview",
+        description:
+          "相较于gpt-4-1106-preview，此版本改进了任务完成能力，它是第二个预览版本",
+      },
+      {
+        time: "2023年11月06日",
+        name: "gpt-4-1106-preview",
+        description:
+          "这是GPT-4 Turbo的首个预览版本，于OpenAI的DevDay活动中发布",
+      },
+      {
+        time: "2023年11月06日",
+        name: "gpt-3.5-turbo-1106",
+        description: "",
+      },
+      {
+        time: "2023年06月13日",
+        name: "gpt-4-0613",
+        description: "",
+      },
+      {
+        time: "2023年06月13日",
+        name: "gpt-3.5-turbo-0613",
+        description: "",
+      },
+      {
+        time: "2023年03月14日",
+        name: "gpt-4-0314",
+        description: "",
+      },
+      {
+        time: "2023年03月01日",
+        name: "gpt-3.5-0301",
+        description: "",
       },
     ],
     // 第三个格子 - Anthropic Claude系列
@@ -203,18 +318,24 @@ export default function Home() {
 
           {/* 第一行第二列 - OpenAI GPT系列 */}
           <div className="border-r-1 border-b-1 border-gray-800 p-2 flex flex-col">
-            <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
-              <span className="mr-2 flex items-center">
-                <Image
-                  src="/openai.svg"
-                  alt="OpenAI Logo"
-                  width={20}
-                  height={20}
-                  className="mr-1"
-                />
-              </span>
-              <span className="text-[#10A37F]">OpenAI ChatGPT</span>
-            </h3>
+            <Link
+              href="https://chatgpt.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3 className="font-bold text-lg mb-2 px-2 flex items-center hover:underline">
+                <span className="mr-2 flex items-center">
+                  <Image
+                    src="/openai.svg"
+                    alt="OpenAI Logo"
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                </span>
+                <span className="text-[#10A37F]">OpenAI ChatGPT</span>
+              </h3>
+            </Link>
             <div className="overflow-y-auto flex-1">
               <table className="w-full text-sm table-fixed">
                 <colgroup>
@@ -338,7 +459,7 @@ export default function Home() {
                     className="mr-1"
                   />
                 </span>
-                <span className="text-[#4D6BFE]">DeepSeek</span>
+                <span className="text-[#4D6BFE]">DeepSeek DeepSeek</span>
               </h3>
             </Link>
             <div className="overflow-y-auto flex-1">
