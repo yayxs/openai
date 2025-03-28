@@ -1,4 +1,6 @@
 {
+  // cline 设置
+  "cline.preferredLanguage": "Simplified Chinese - 简体中文",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
@@ -16,4 +18,4 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
-} 
+}

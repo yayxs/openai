@@ -2,6 +2,7 @@
 
 import Particles from "@/components/Particles/Particles";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   // 模拟数据 - 每个格子的表格数据（每个格子是一个数据集，包含多行数据）
@@ -48,11 +49,57 @@ export default function Home() {
       {
         time: "2025年03月24日",
         name: "DeepSeek-V3-0324",
-        description: "",
+        description: "DeepSeek V3 模型已完成0324小版本升级",
       },
       {
         time: "2025年01月20日",
         name: "DeepSeek-R1",
+        description: "",
+      },
+      {
+        time: "2024年12月26日",
+        name: "DeepSeek-V3",
+        description: "",
+      },
+      {
+        time: "2024年12月10日",
+        name: "DeepSeek-V2.5-1210",
+        description: "DeepSeek V2.5 的最终版微调模型，全新支持了联网搜索",
+      },
+      {
+        time: "2024年11月20日",
+        name: "DeepSeek-R1-Lite",
+        description: "处于迭代开发阶段，仅支持网页使用，暂不支持 API 调用",
+      },
+      {
+        time: "2024年09月05日",
+        name: "DeepSeek-V2.5",
+        description:
+          "DeepSeek V2 Chat 和 DeepSeek Coder V2 两个模型已经合并升级，升级后的新模型为 DeepSeek V2.5",
+      },
+      {
+        time: "2024年07月24日",
+        name: "DeepSeek-Coder-V2-0724",
+        description: "deepseek-coder 模型升级为 DeepSeek-Coder-V2-0724",
+      },
+      {
+        time: "2024年06月28日",
+        name: "DeepSeek-V2-0628",
+        description: "deepseek-chat 模型升级为 DeepSeek-V2-0628",
+      },
+      {
+        time: "2024年06月14日",
+        name: "DeepSeek-Coder-V2-0614",
+        description: "deepseek-coder 模型升级为 DeepSeek-Coder-V2-0614",
+      },
+      {
+        time: "2024年05月17日",
+        name: "DeepSeek-V2-0517",
+        description: "deepseek-chat 模型升级为 DeepSeek-V2-0517",
+      },
+      {
+        time: "2024年05月06日",
+        name: "DeepSeek-V2-0506",
         description: "",
       },
     ],
@@ -81,7 +128,7 @@ export default function Home() {
         {/* 内容区域 - 占满屏幕的2行3列网格 */}
         <div className="w-full h-full border-1 border-gray-800 rounded-3xl overflow-hidden grid grid-cols-3 grid-rows-2">
           {/* 第一行第一列 - Gemini系列 */}
-          <div className="border-r-1 border-b-1 border-gray-800 p-2 overflow-auto">
+          <div className="border-r-1 border-b-1 border-gray-800 p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
               <span className="mr-2 flex items-center">
                 <Image
@@ -94,32 +141,43 @@ export default function Home() {
               </span>
               <span className="text-[#4285F4]">Google Gemini</span>
             </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[0]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b whitespace-pre-line">
-                      {item.description}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[0]?.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-100 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#gemini-2-5-thinking",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b whitespace-pre-line">
+                        {item.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* 第一行第二列 - OpenAI GPT系列 */}
-          <div className="border-r-1 border-b-1 border-gray-800 p-2 overflow-auto">
+          <div className="border-r-1 border-b-1 border-gray-800 p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
               <span className="mr-2 flex items-center">
                 <Image
@@ -132,30 +190,32 @@ export default function Home() {
               </span>
               <span className="text-[#10A37F]">OpenAI ChatGPT</span>
             </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[1]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[1]?.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* 第一行第三列 - Anthropic Claude系列 */}
-          <div className="border-b-1 border-gray-800 p-2 overflow-auto">
+          <div className="border-b-1 border-gray-800 p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
               <span className="mr-2 flex items-center">
                 <Image
@@ -168,30 +228,32 @@ export default function Home() {
               </span>
               <span className="text-[#7B61FF]">Anthropic Claude</span>
             </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[2]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[2]?.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* 第二行第一列 - xAI Grok系列 */}
-          <div className="border-r-1 border-gray-800 p-2 overflow-auto">
+          <div className="border-r-1 border-gray-800 p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
               <span className="mr-2 flex items-center">
                 <Image
@@ -204,66 +266,76 @@ export default function Home() {
               </span>
               <span className="text-[#000000]">xAI Grok</span>
             </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[3]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[3]?.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* 第二行第二列 - DeepSeek */}
-          <div className="border-r-1 border-gray-800 p-2 overflow-auto">
-            <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
-              <span className="mr-2 flex items-center">
-                <Image
-                  src="/deepseek-color.svg"
-                  alt="DeepSeek Logo"
-                  width={20}
-                  height={20}
-                  className="mr-1"
-                />
-              </span>
-              <span className="text-[#4D6BFE]">DeepSeek</span>
-            </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[4]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="border-r-1 border-gray-800 p-2 flex flex-col">
+            <Link
+              href="https://chat.deepseek.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
+                <span className="mr-2 flex items-center">
+                  <Image
+                    src="/deepseek-color.svg"
+                    alt="DeepSeek Logo"
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                </span>
+                <span className="text-[#4D6BFE]">DeepSeek</span>
+              </h3>
+            </Link>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[4]?.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* 第二行第三列 - Meta LLaMA系列 */}
-          <div className="p-2 overflow-auto">
+          <div className="p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
               <span className="mr-2 flex items-center">
                 <Image
@@ -276,26 +348,28 @@ export default function Home() {
               </span>
               <span className="text-[#0668E1]">Meta LLaMA</span>
             </h3>
-            <table className="w-full text-sm table-fixed">
-              <colgroup>
-                <col className="w-[120px] min-w-[120px]" />
-                <col className="w-[250px] min-w-[250px]" />
-                <col />
-              </colgroup>
-              <tbody>
-                {gridData[5]?.map((item, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="p-2 border-b whitespace-nowrap">
-                      {item.time}
-                    </td>
-                    <td className="p-2 border-b font-medium break-words">
-                      {item.name}
-                    </td>
-                    <td className="p-2 border-b">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-y-auto flex-1">
+              <table className="w-full text-sm table-fixed">
+                <colgroup>
+                  <col className="w-[120px] min-w-[120px]" />
+                  <col className="w-[250px] min-w-[250px]" />
+                  <col />
+                </colgroup>
+                <tbody>
+                  {gridData[5]?.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="p-2 border-b whitespace-nowrap">
+                        {item.time}
+                      </td>
+                      <td className="p-2 border-b font-medium break-words">
+                        {item.name}
+                      </td>
+                      <td className="p-2 border-b">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
