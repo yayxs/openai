@@ -3,6 +3,8 @@
 import Particles from "@/components/Particles/Particles";
 import Image from "next/image";
 import Link from "next/link";
+import { Footer } from "@/components/ui/footer";
+import { Github, Twitter } from "lucide-react";
 
 export default function Home() {
   // 模拟数据 - 每个格子的表格数据（每个格子是一个数据集，包含多行数据）
@@ -233,9 +235,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="h-screen w-screen font-[family-name:var(--font-geist-sans)] relative flex items-center justify-center overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       {/* 粒子背景 */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="fixed inset-0 z-0">
         <Particles
           particleColors={["#4F46E5", "#60A5FA", "#34D399"]}
           particleCount={250}
@@ -248,10 +250,10 @@ export default function Home() {
         />
       </div>
 
-      {/* 整体容器 - 带有圆角边框 */}
-      <div className="relative z-10 w-screen h-screen p-4">
-        {/* 内容区域 - 占满屏幕的2行3列网格 */}
-        <div className="w-full h-full border-1 border-gray-800 rounded-3xl overflow-hidden grid grid-cols-3 grid-rows-2">
+      {/* 主要内容区 */}
+      <main className="relative z-10 flex-grow p-4">
+        {/* 内容区域 - 2行3列网格 */}
+        <div className="w-full border-1 border-gray-800 rounded-3xl overflow-hidden grid grid-cols-3 grid-rows-2 h-[80vh]">
           {/* 第一行第一列 - Gemini系列 */}
           <div className="border-r-1 border-b-1 border-gray-800 p-2 flex flex-col">
             <h3 className="font-bold text-lg mb-2 px-2 flex items-center">
@@ -509,6 +511,52 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </main>
+
+      {/* 页脚 */}
+      <div className="relative z-10 bg-white/90 backdrop-blur-sm mt-auto">
+        <Footer
+          logo={
+            <Image
+              src="/window.svg"
+              alt="LLM Name Logo"
+              width={24}
+              height={24}
+            />
+          }
+          brandName="LLM Name"
+          socialLinks={[
+            {
+              icon: <Github className="h-5 w-5" />,
+              href: "https://github.com/yayxs/llm-name",
+              label: "GitHub",
+            },
+            {
+              icon: <Twitter className="h-5 w-5" />,
+              href: "https://x.com/10k_ai",
+              label: "X (Twitter)",
+            },
+          ]}
+          mainLinks={[
+            {
+              href: "/models",
+              label: "模型列表",
+            },
+            {
+              href: "/naming-patterns",
+              label: "命名规则",
+            },
+            {
+              href: "/timeline",
+              label: "发布时间线",
+            },
+          ]}
+          legalLinks={[]}
+          copyright={{
+            text: `© ${new Date().getFullYear()} LLM Name`,
+            license: "MIT License",
+          }}
+        />
       </div>
     </div>
   );
