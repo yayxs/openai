@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -123,22 +123,39 @@
 
 /* 自定义滚动条样式 */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: #d1d5db;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #9ca3af;
+}
+
+/* 让滚动条在不滚动时隐藏 */
+.scroll-auto-hide {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scroll-auto-hide:hover {
+  scrollbar-color: #d1d5db transparent;
+}
+
+.scroll-auto-hide::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.scroll-auto-hide:hover::-webkit-scrollbar-thumb {
+  background: #d1d5db;
 }
 
 /* 暗色模式下的滚动条样式 */
