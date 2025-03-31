@@ -281,7 +281,7 @@ export default function Home() {
   ]
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col h-screen overflow-hidden'>
       {/* 粒子背景 */}
       <div className='fixed inset-0 z-0'>
         <Particles
@@ -297,9 +297,9 @@ export default function Home() {
       </div>
 
       {/* 主要内容区 */}
-      <main className='relative z-10 flex-grow p-4 flex flex-col'>
+      <main className='relative z-10 flex-grow p-2 flex flex-col h-[calc(100vh-60px)]'>
         {/* 内容区域 - 2行3列网格 */}
-        <div className='w-full rounded-lg overflow-hidden grid grid-cols-3 grid-rows-2 flex-grow bg-white'>
+        <div className='w-full rounded-lg overflow-hidden grid grid-cols-3 grid-rows-2 h-full bg-white'>
           {/* 第一行第一列 - Gemini系列 */}
           <div className='border-r border-b p-0 flex flex-col'>
             <div className='flex justify-between items-center border-b p-2 bg-gray-50'>
@@ -318,7 +318,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -367,7 +367,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -407,7 +407,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -450,7 +450,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -490,7 +490,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -528,7 +528,7 @@ export default function Home() {
                 <Maximize2 className='h-4 w-4' />
               </Button>
             </div>
-            <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
+            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -552,42 +552,44 @@ export default function Home() {
 
       {/* 全屏模态窗口 */}
       <Dialog isOpen={dialogOpen} onClose={closeDialog} title={dialogTitle}>
-        {activeGridIndex !== null && (
-          <table className='w-full text-sm'>
-            <colgroup>
-              <col className='w-1/4' />
-              <col className='w-1/3' />
-              <col className='w-5/12' />
-            </colgroup>
-            <thead>
-              <tr className='bg-gray-50'>
-                <th className='p-2 text-left font-medium border-b'>发布时间</th>
-                <th className='p-2 text-left font-medium border-b'>模型名称</th>
-                <th className='p-2 text-left font-medium border-b'>描述</th>
-              </tr>
-            </thead>
-            <tbody>
-              {gridData[activeGridIndex]?.map((item, index) => (
-                <tr key={index} className='hover:bg-gray-50 border-b even:bg-gray-50/30'>
-                  <td className='p-2 py-3 whitespace-nowrap'>{item.time}</td>
-                  <td className='p-2 py-3 font-medium break-words'>{item.name}</td>
-                  <td className='p-2 py-3 whitespace-pre-line'>{item.description}</td>
+        <div className="max-h-[80vh] overflow-y-auto pr-2">
+          {activeGridIndex !== null && (
+            <table className='w-full text-sm'>
+              <colgroup>
+                <col className='w-1/4' />
+                <col className='w-1/3' />
+                <col className='w-5/12' />
+              </colgroup>
+              <thead className="sticky top-0 bg-white z-10">
+                <tr className='bg-gray-50'>
+                  <th className='p-2 text-left font-medium border-b'>发布时间</th>
+                  <th className='p-2 text-left font-medium border-b'>模型名称</th>
+                  <th className='p-2 text-left font-medium border-b'>描述</th>
                 </tr>
-              ))}
-              {gridData[activeGridIndex]?.length === 0 && (
-                <tr>
-                  <td colSpan={3} className='p-4 text-center text-gray-500'>
-                    暂无数据
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        )}
+              </thead>
+              <tbody>
+                {gridData[activeGridIndex]?.map((item, index) => (
+                  <tr key={index} className='hover:bg-gray-50 border-b even:bg-gray-50/30'>
+                    <td className='p-2 py-3 whitespace-nowrap'>{item.time}</td>
+                    <td className='p-2 py-3 font-medium break-words'>{item.name}</td>
+                    <td className='p-2 py-3 whitespace-pre-line'>{item.description}</td>
+                  </tr>
+                ))}
+                {gridData[activeGridIndex]?.length === 0 && (
+                  <tr>
+                    <td colSpan={3} className='p-4 text-center text-gray-500'>
+                      暂无数据
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
       </Dialog>
 
       {/* 页脚 */}
-      <div className='relative z-10 bg-white/90 backdrop-blur-sm mt-2'>
+      <div className='relative z-10 bg-white/90 backdrop-blur-sm h-[60px] flex items-center'>
         <Footer
           logo={<Image src='/window.svg' alt='LLMs Name Logo' width={24} height={24} />}
           brandName='LLMs Name'

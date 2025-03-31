@@ -25,33 +25,21 @@ interface FooterProps {
 
 export function Footer({ logo, brandName, socialLinks, mainLinks, legalLinks, copyright }: FooterProps) {
   return (
-    <footer className='pb-6'>
-      <div className='px-4 lg:px-8'>
-        <div className='md:flex md:items-start md:justify-between'>
+    <footer className='py-2 w-full'>
+      <div className='px-4 lg:px-6 flex items-center justify-between'>
+        <div className='flex items-center'>
           <Link href='/' className='flex items-center gap-x-2' aria-label={brandName}>
             {logo}
-            <span className='font-bold text-xl'>{brandName}</span>
+            <span className='font-bold text-base'>{brandName}</span>
           </Link>
-          <ul className='flex list-none mt-6 md:mt-0 space-x-3'>
-            {socialLinks.map((link, i) => (
-              <li key={i}>
-                <Button variant='secondary' size='icon' className='h-10 w-10 rounded-full' asChild>
-                  <a href={link.href} target='_blank' aria-label={link.label}>
-                    {link.icon}
-                  </a>
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className='border-t mt-6 pt-6 md:mt-4 md:pt-8 lg:grid lg:grid-cols-10'>
-          <nav className='lg:mt-0 lg:col-[4/11]'>
-            <ul className='list-none flex flex-wrap -my-1 -mx-2 lg:justify-end'>
+          
+          <div className='ml-4 flex'>
+            <ul className='flex list-none space-x-2'>
               {mainLinks.map((link, i) => (
-                <li key={i} className='my-1 mx-2 shrink-0'>
+                <li key={i} className='shrink-0'>
                   <a
                     href={link.href}
-                    className='text-sm text-primary underline-offset-4 hover:underline'
+                    className='text-base text-primary underline-offset-4 hover:underline'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
@@ -60,22 +48,26 @@ export function Footer({ logo, brandName, socialLinks, mainLinks, legalLinks, co
                 </li>
               ))}
             </ul>
-          </nav>
-          <div className='mt-6 lg:mt-0 lg:col-[4/11]'>
-            <ul className='list-none flex flex-wrap -my-1 -mx-3 lg:justify-end'>
-              {legalLinks.map((link, i) => (
-                <li key={i} className='my-1 mx-3 shrink-0'>
-                  <a href={link.href} className='text-sm text-muted-foreground underline-offset-4 hover:underline'>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
-          <div className='mt-6 text-sm leading-6 text-muted-foreground whitespace-nowrap lg:mt-0 lg:row-[1/3] lg:col-[1/4]'>
+        </div>
+
+        <div className='flex items-center space-x-4'>
+          {/* <div className='text-base text-muted-foreground'>
             <div>{copyright.text}</div>
             {copyright.license && <div>{copyright.license}</div>}
-          </div>
+          </div> */}
+
+          <ul className='flex list-none space-x-2'>
+            {socialLinks.map((link, i) => (
+              <li key={i}>
+                <Button variant='secondary' size='icon' className='h-8 w-8 rounded-full' asChild>
+                  <a href={link.href} target='_blank' aria-label={link.label}>
+                    {link.icon}
+                  </a>
+                </Button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
