@@ -23,7 +23,7 @@ interface FooterProps {
   }
 }
 
-export function Footer({ logo, brandName, socialLinks, mainLinks, legalLinks, copyright }: FooterProps) {
+export function Footer({ logo, brandName, socialLinks, mainLinks, copyright }: FooterProps) {
   return (
     <footer className='py-2 w-full'>
       <div className='px-4 lg:px-6 flex flex-col md:flex-row items-center justify-between'>
