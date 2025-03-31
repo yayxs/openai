@@ -4,7 +4,7 @@ import Particles from '@/components/Particles/Particles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Footer } from '@/components/ui/footer'
-import { Github, Twitter, Maximize2 } from 'lucide-react'
+import { Github, Twitter, Maximize2, Info } from 'lucide-react'
 import { useState } from 'react'
 import { Dialog } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,9 @@ export default function Home() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [activeGridIndex, setActiveGridIndex] = useState<number | null>(null)
   const [dialogTitle, setDialogTitle] = useState('')
+  const [tipDialogOpen, setTipDialogOpen] = useState(false)
+  const [tipContent, setTipContent] = useState('')
+  const [tipTitle, setTipTitle] = useState('')
 
   // 打开全屏模态窗口
   const openFullscreen = (index: number, title: string) => {
@@ -26,6 +29,18 @@ export default function Home() {
   const closeDialog = () => {
     setDialogOpen(false)
     setActiveGridIndex(null)
+  }
+
+  // 打开提示窗口
+  const openTipDialog = (title: string, content: string) => {
+    setTipTitle(title)
+    setTipContent(content)
+    setTipDialogOpen(true)
+  }
+
+  // 关闭提示窗口
+  const closeTipDialog = () => {
+    setTipDialogOpen(false)
   }
 
   // 模拟数据 - 每个格子的表格数据（每个格子是一个数据集，包含多行数据）
@@ -309,14 +324,29 @@ export default function Home() {
                 </span>
                 <span className='text-[#4285F4]'>Google Gemini</span>
               </h3>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(0, 'Google Gemini')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'Google Gemini 使用提示', 
+                      '• Gemini支持多模态理解与生成\n• Gemini 2.5支持更长的上下文窗口\n• 具有思考功能(Thinking)的模型更善于复杂推理\n• 通过Google开发者平台可以使用API\n• 可在多种设备上使用Gemini，包括Android和Chrome浏览器'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(0, 'Google Gemini')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -358,14 +388,29 @@ export default function Home() {
                   <span className='text-[#10A37F]'>OpenAI ChatGPT</span>
                 </h3>
               </Link>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(1, 'OpenAI ChatGPT')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'OpenAI ChatGPT 使用提示', 
+                      '• GPT-4o是当前最先进的多模态模型\n• 支持128K上下文窗口，特殊场景最高可达1M\n• 擅长编程、多语言翻译和创意写作\n• 最新模型支持实时搜索和插件集成\n• 提供完善的API文档和开发者工具'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(1, 'OpenAI ChatGPT')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -398,14 +443,29 @@ export default function Home() {
                   <span className='text-[#7B61FF]'>Anthropic Claude</span>
                 </h3>
               </Link>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(2, 'Anthropic Claude')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'Anthropic Claude 使用提示', 
+                      '•  需要快速响应和低成本：选择Claude 3 Haiku或Claude 3.5 Haiku\n•  追求性价比和企业级应用：选择Claude 3 Sonnet、Claude 3.5 Sonnet或Claude 3.7 Sonnet\n•  需要顶级性能处理复杂任务：选择Claude 3 Opus'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(2, 'Anthropic Claude')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -418,7 +478,8 @@ export default function Home() {
                   {gridData[2]?.map((item, index) => (
                     <tr
                       key={index}
-                      className='hover:bg-gray-50 even:bg-gray-50/30'
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => window.open('https://claude.ai/', '_blank')}
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
                       <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
@@ -441,14 +502,29 @@ export default function Home() {
                   <span className='text-[#000000]'>xAI Grok</span>
                 </h3>
               </Link>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(3, 'xAI Grok')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'xAI Grok 使用提示', 
+                      '• Grok是由Elon Musk的xAI公司开发的对话AI\n• 区别于其他AI的幽默和无限制风格\n• Grok-2支持实时互联网搜索能力\n• 支持图像理解和语义分析\n• 需要X平台(Twitter)高级会员才能使用'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(3, 'xAI Grok')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -481,14 +557,29 @@ export default function Home() {
                   <span className='text-[#4D6BFE]'>DeepSeek DeepSeek</span>
                 </h3>
               </Link>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(4, 'DeepSeek DeepSeek')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'DeepSeek 使用提示', 
+                      '• DeepSeek是中国领先的AI大模型\n• 集成了通用对话和编程能力\n• DeepSeek V3支持中英双语和多模态输入\n• 具有先进的代码生成和理解能力\n• 提供开源版本和商业API服务'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(4, 'DeepSeek DeepSeek')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -519,14 +610,29 @@ export default function Home() {
                 </span>
                 <span className='text-[#0668E1]'>Meta LLaMA</span>
               </h3>
-              <Button
-                variant='ghost'
-                size='icon'
-                className='h-8 w-8 rounded-full hover:bg-gray-100'
-                onClick={() => openFullscreen(5, 'Meta LLaMA')}
-              >
-                <Maximize2 className='h-4 w-4' />
-              </Button>
+              <div className='flex items-center'>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
+                  onClick={() => 
+                    openTipDialog(
+                      'Meta LLaMA 使用提示', 
+                      '• LLaMA是Meta开发的开源大语言模型\n• 可以本地部署，无需依赖云服务\n• 支持微调和自定义模型训练\n• 最新版本LLaMA 3支持多语言和多模态输入\n• 广泛的社区支持和开发工具'
+                    )
+                  }
+                >
+                  <Info className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='h-8 w-8 rounded-full hover:bg-gray-100'
+                  onClick={() => openFullscreen(5, 'Meta LLaMA')}
+                >
+                  <Maximize2 className='h-4 w-4' />
+                </Button>
+              </div>
             </div>
             <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
@@ -585,6 +691,15 @@ export default function Home() {
               </tbody>
             </table>
           )}
+        </div>
+      </Dialog>
+
+      {/* 提示模态窗口 */}
+      <Dialog isOpen={tipDialogOpen} onClose={closeTipDialog} title={tipTitle}>
+        <div className="max-w-xl">
+          <div className="whitespace-pre-line text-base">
+            {tipContent}
+          </div>
         </div>
       </Dialog>
 
