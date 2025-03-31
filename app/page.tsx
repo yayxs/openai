@@ -165,14 +165,9 @@ export default function Home() {
     // 第三个格子 - Anthropic Claude系列
     [
       {
-        time: '2025年02月25日',
+        time: '2025年02月19日',
         name: 'Claude 3.7 Sonnet',
         description: '具有推理能力的模型',
-      },
-      {
-        time: '2024年10月22日',
-        name: 'Claude 3.5 Haiku',
-        description: 'Claude 3.5 Haiku 和 Claude 3 Opus 表现相当',
       },
       {
         time: '2024年10月22日',
@@ -180,24 +175,29 @@ export default function Home() {
         description: '升级了2024年06月21日的Claude 3.5 Sonnet',
       },
       {
-        time: '2024年06月21日',
+        time: '2024年10月22日',
+        name: 'Claude 3.5 Haiku',
+        description: 'Claude 3.5 Haiku 和 Claude 3 Opus 表现相当',
+      },
+      {
+        time: '2024年06月20日',
         name: 'Claude 3.5 Sonnet',
         description: 'Claude 3.5 模型系列中的首款产品',
       },
       {
-        time: '2024年03月14日',
-        name: 'Claude 3 Opus',
-        description: '',
-      },
-      {
-        time: '2024年03月14日',
-        name: 'Claude 3 Sonnet',
-        description: '',
-      },
-      {
-        time: '2024年03月14日',
+        time: '2024年03月07日',
         name: 'Claude 3 Haiku',
-        description: '',
+        description: 'claude-3-haiku-20240307',
+      },
+      {
+        time: '2024年02月29日',
+        name: 'Claude 3 Opus',
+        description: 'claude-3-opus-20240229',
+      },
+      {
+        time: '2024年02月29日',
+        name: 'Claude 3 Sonnet',
+        description: 'claude-3-sonnet-20240229',
       },
     ],
     // 第四个格子 - xAI Grok系列
@@ -312,7 +312,7 @@ export default function Home() {
       </div>
 
       {/* 主要内容区 */}
-      <main className='relative z-10 flex-grow p-2 flex flex-col h-[calc(100vh-60px)]'>
+      <main className='relative z-10 flex-grow p-2 flex flex-col h-[calc(100vh-80px)] md:h-[calc(100vh-60px)]'>
         {/* 内容区域 - 2行3列网格 */}
         <div className='w-full rounded-lg overflow-hidden grid grid-cols-3 grid-rows-2 h-full bg-white'>
           {/* 第一行第一列 - Gemini系列 */}
@@ -348,7 +348,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -412,7 +412,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -467,7 +467,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -478,8 +478,7 @@ export default function Home() {
                   {gridData[2]?.map((item, index) => (
                     <tr
                       key={index}
-                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
-                      onClick={() => window.open('https://claude.ai/', '_blank')}
+                      className='hover:bg-gray-50 even:bg-gray-50/30'
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
                       <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
@@ -506,19 +505,6 @@ export default function Home() {
                 <Button
                   variant='ghost'
                   size='icon'
-                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
-                  onClick={() => 
-                    openTipDialog(
-                      'xAI Grok 使用提示', 
-                      '• Grok是由Elon Musk的xAI公司开发的对话AI\n• 区别于其他AI的幽默和无限制风格\n• Grok-2支持实时互联网搜索能力\n• 支持图像理解和语义分析\n• 需要X平台(Twitter)高级会员才能使用'
-                    )
-                  }
-                >
-                  <Info className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  size='icon'
                   className='h-8 w-8 rounded-full hover:bg-gray-100'
                   onClick={() => openFullscreen(3, 'xAI Grok')}
                 >
@@ -526,7 +512,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -558,19 +544,7 @@ export default function Home() {
                 </h3>
               </Link>
               <div className='flex items-center'>
-                <Button
-                  variant='ghost'
-                  size='icon'
-                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
-                  onClick={() => 
-                    openTipDialog(
-                      'DeepSeek 使用提示', 
-                      '• DeepSeek是中国领先的AI大模型\n• 集成了通用对话和编程能力\n• DeepSeek V3支持中英双语和多模态输入\n• 具有先进的代码生成和理解能力\n• 提供开源版本和商业API服务'
-                    )
-                  }
-                >
-                  <Info className='h-4 w-4' />
-                </Button>
+               
                 <Button
                   variant='ghost'
                   size='icon'
@@ -581,7 +555,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -634,7 +608,7 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className='overflow-y-auto flex-1 px-2 h-[calc(50vh-75px)]'>
+            <div className='custom-scrollbar flex-1 px-2 h-[calc(50vh-85px)] md:h-[calc(50vh-75px)]'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
                   <col className='w-1/4 min-w-[100px]' />
@@ -704,7 +678,7 @@ export default function Home() {
       </Dialog>
 
       {/* 页脚 */}
-      <div className='relative z-10 bg-white/90 backdrop-blur-sm h-[60px] flex items-center'>
+      <div className='relative z-10 bg-white/90 backdrop-blur-sm min-h-[70px] md:h-[60px] flex items-center'>
         <Footer
           logo={<Image src='/window.svg' alt='LLMs Name Logo' width={24} height={24} />}
           brandName='LLMs Name'
@@ -721,6 +695,14 @@ export default function Home() {
             },
           ]}
           mainLinks={[
+            {
+              href: 'https://docs.x.ai/docs/models?cluster=us-east-1#model-constraints',
+              label: 'xAI Grok Models and Pricing',
+            },
+            {
+              href: 'https://docs.anthropic.com/zh-CN/docs/about-claude/models/all-models',
+              label: 'Anthropic Claude 模型列表',
+            },
             {
               href: 'https://api-docs.deepseek.com/zh-cn/news/news1210',
               label: 'DeepSeek API 文档 - 新闻',

@@ -57,7 +57,7 @@ export function Dialog({ isOpen, onClose, title, children, className }: DialogPr
             <X className='h-4 w-4' />
           </Button>
         </div>
-        <div className='p-4 overflow-auto flex-1 scroll-auto-hide'>{children}</div>
+        <div className='p-4 custom-scrollbar flex-1'>{children}</div>
       </div>
     </div>,
     document.body
