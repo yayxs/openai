@@ -150,9 +150,39 @@ export default function Home() {
     // 第三个格子 - Anthropic Claude系列
     [
       {
-        time: '2023年3月',
-        name: 'claude-1',
-        description: 'Anthropic首个商用模型',
+        time: '2025年02月25日',
+        name: 'Claude 3.7 Sonnet',
+        description: '具有推理能力的模型',
+      },
+      {
+        time: '2024年10月22日',
+        name: 'Claude 3.5 Haiku',
+        description: 'Claude 3.5 Haiku 和 Claude 3 Opus 表现相当',
+      },
+      {
+        time: '2024年10月22日',
+        name: 'Claude 3.5 Sonnet',
+        description: '升级了2024年06月21日的Claude 3.5 Sonnet',
+      },
+      {
+        time: '2024年06月21日',
+        name: 'Claude 3.5 Sonnet',
+        description: 'Claude 3.5 模型系列中的首款产品',
+      },
+      {
+        time: '2024年03月14日',
+        name: 'Claude 3 Opus',
+        description: '',
+      },
+      {
+        time: '2024年03月14日',
+        name: 'Claude 3 Sonnet',
+        description: '',
+      },
+      {
+        time: '2024年03月14日',
+        name: 'Claude 3 Haiku',
+        description: '',
       },
     ],
     // 第四个格子 - xAI Grok系列
@@ -269,7 +299,7 @@ export default function Home() {
       {/* 主要内容区 */}
       <main className='relative z-10 flex-grow p-4 flex flex-col'>
         {/* 内容区域 - 2行3列网格 */}
-        <div className='w-full border rounded-lg overflow-hidden grid grid-cols-3 grid-rows-2 flex-grow bg-white shadow-md'>
+        <div className='w-full rounded-lg overflow-hidden grid grid-cols-3 grid-rows-2 flex-grow bg-white'>
           {/* 第一行第一列 - Gemini系列 */}
           <div className='border-r border-b p-0 flex flex-col'>
             <div className='flex justify-between items-center border-b p-2 bg-gray-50'>
@@ -291,9 +321,9 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[0]?.map((item, index) => (
@@ -340,9 +370,9 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[1]?.map((item, index) => (
@@ -360,12 +390,14 @@ export default function Home() {
           {/* 第一行第三列 - Anthropic Claude系列 */}
           <div className='border-b p-0 flex flex-col'>
             <div className='flex justify-between items-center border-b p-2 bg-gray-50'>
-              <h3 className='font-bold text-lg flex items-center'>
-                <span className='mr-2 flex items-center'>
-                  <Image src='/anthropic.svg' alt='Anthropic Logo' width={20} height={20} className='mr-1' />
-                </span>
-                <span className='text-[#7B61FF]'>Anthropic Claude</span>
-              </h3>
+              <Link href='https://claude.ai/' target='_blank' rel='noopener noreferrer'>
+                <h3 className='font-bold text-lg flex items-center hover:underline'>
+                  <span className='mr-2 flex items-center'>
+                    <Image src='/anthropic.svg' alt='Anthropic Logo' width={20} height={20} className='mr-1' />
+                  </span>
+                  <span className='text-[#7B61FF]'>Anthropic Claude</span>
+                </h3>
+              </Link>
               <Button
                 variant='ghost'
                 size='icon'
@@ -378,13 +410,16 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[2]?.map((item, index) => (
-                    <tr key={index} className='hover:bg-gray-50 even:bg-gray-50/30'>
+                    <tr
+                      key={index}
+                      className='hover:bg-gray-50 even:bg-gray-50/30'
+                    >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
                       <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
@@ -418,9 +453,9 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[3]?.map((item, index) => (
@@ -458,9 +493,9 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[4]?.map((item, index) => (
@@ -496,9 +531,9 @@ export default function Home() {
             <div className='overflow-y-auto flex-1 scroll-auto-hide px-2'>
               <table className='w-full text-sm table-fixed'>
                 <colgroup>
-                  <col className='w-[120px] min-w-[120px]' />
-                  <col className='w-[180px] min-w-[180px]' />
-                  <col />
+                  <col className='w-1/4 min-w-[100px]' />
+                  <col className='w-1/3 min-w-[120px]' />
+                  <col className='w-5/12' />
                 </colgroup>
                 <tbody>
                   {gridData[5]?.map((item, index) => (
@@ -520,9 +555,9 @@ export default function Home() {
         {activeGridIndex !== null && (
           <table className='w-full text-sm'>
             <colgroup>
-              <col className='w-[120px]' />
-              <col className='w-[210px]' />
-              <col />
+              <col className='w-1/4' />
+              <col className='w-1/3' />
+              <col className='w-5/12' />
             </colgroup>
             <thead>
               <tr className='bg-gray-50'>
