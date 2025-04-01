@@ -1,0 +1,288 @@
+{
+  "gemini_latest_models": {
+    "gemini_2_5_pro": [
+      {
+        "name": "models/gemini-2.5-pro-exp-03-25",
+        "version": "2.5-exp-03-25",
+        "displayName": "Gemini 2.5 Pro Experimental 03-25",
+        "description": "Experimental release (March 25th, 2025) of Gemini 2.5 Pro",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2025-03-25",
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 64
+      },
+      {
+        "name": "models/gemini-2.0-pro-exp",
+        "version": "2.5-exp-03-25",
+        "displayName": "Gemini 2.0 Pro Experimental",
+        "description": "Experimental release (March 25th, 2025) of Gemini 2.5 Pro",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2025-03-25",
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 64
+      },
+      {
+        "name": "models/gemini-2.0-pro-exp-02-05",
+        "version": "2.5-exp-03-25",
+        "displayName": "Gemini 2.0 Pro Experimental 02-05",
+        "description": "Experimental release (March 25th, 2025) of Gemini 2.5 Pro",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2025-02-05",
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 64
+      },
+      {
+        "name": "models/gemini-exp-1206",
+        "version": "2.5-exp-03-25",
+        "displayName": "Gemini Experimental 1206",
+        "description": "Experimental release (March 25th, 2025) of Gemini 2.5 Pro",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2024-12-06",
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 64
+      }
+    ],
+    "gemini_2_0_flash": [
+      {
+        "name": "models/gemini-2.0-flash-exp",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash Experimental",
+        "description": "Gemini 2.0 Flash Experimental",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": null,
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash",
+        "description": "Gemini 2.0 Flash",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": null,
+        "status": "stable",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash-001",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash 001",
+        "description": "Stable version of Gemini 2.0 Flash, our fast and versatile multimodal model for scaling across diverse tasks, released in January of 2025.",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": "2025-01",
+        "status": "stable",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash-exp-image-generation",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash (Image Generation) Experimental",
+        "description": "Gemini 2.0 Flash (Image Generation) Experimental",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": null,
+        "status": "experimental",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40,
+        "specialFeature": "image-generation"
+      }
+    ],
+    "gemini_2_0_flash_thinking": [
+      {
+        "name": "models/gemini-2.0-flash-thinking-exp-01-21",
+        "version": "2.0-exp-01-21",
+        "displayName": "Gemini 2.0 Flash Thinking Experimental 01-21",
+        "description": "Experimental release (January 21st, 2025) of Gemini 2.0 Flash Thinking",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2025-01-21",
+        "status": "experimental",
+        "temperature": 0.7,
+        "topP": 0.95,
+        "topK": 64
+      },
+      {
+        "name": "models/gemini-2.0-flash-thinking-exp",
+        "version": "2.0-exp-01-21",
+        "displayName": "Gemini 2.0 Flash Thinking Experimental 01-21",
+        "description": "Experimental release (January 21st, 2025) of Gemini 2.0 Flash Thinking",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2025-01-21",
+        "status": "experimental",
+        "temperature": 0.7,
+        "topP": 0.95,
+        "topK": 64
+      },
+      {
+        "name": "models/gemini-2.0-flash-thinking-exp-1219",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash Thinking Experimental",
+        "description": "Gemini 2.0 Flash Thinking Experimental",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "releaseDate": "2024-12-19",
+        "status": "experimental",
+        "temperature": 0.7,
+        "topP": 0.95,
+        "topK": 64
+      }
+    ],
+    "gemini_2_0_flash_lite": [
+      {
+        "name": "models/gemini-2.0-flash-lite-001",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash-Lite 001",
+        "description": "Stable version of Gemini 2.0 Flash Lite",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": null,
+        "status": "stable",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash-lite",
+        "version": "2.0",
+        "displayName": "Gemini 2.0 Flash-Lite",
+        "description": "Gemini 2.0 Flash-Lite",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": null,
+        "status": "stable",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash-lite-preview-02-05",
+        "version": "preview-02-05",
+        "displayName": "Gemini 2.0 Flash-Lite Preview 02-05",
+        "description": "Preview release (February 5th, 2025) of Gemini 2.0 Flash Lite",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": "2025-02-05",
+        "status": "preview",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      },
+      {
+        "name": "models/gemini-2.0-flash-lite-preview",
+        "version": "preview-02-05",
+        "displayName": "Gemini 2.0 Flash-Lite Preview",
+        "description": "Preview release (February 5th, 2025) of Gemini 2.0 Flash Lite",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 8192,
+        "releaseDate": "2025-02-05",
+        "status": "preview",
+        "temperature": 1.0,
+        "topP": 0.95,
+        "topK": 40
+      }
+    ]
+  },
+  "usage_recommendations": {
+    "complex_reasoning": {
+      "recommended_model": "models/gemini-2.0-flash-thinking-exp",
+      "reason": "Lower temperature (0.7) and larger output limit (65,536 tokens) optimized for detailed reasoning"
+    },
+    "resource_constrained": {
+      "recommended_model": "models/gemini-2.0-flash-lite-001",
+      "reason": "Lightweight design while maintaining the same context window size"
+    },
+    "latest_features": {
+      "recommended_model": "models/gemini-2.5-pro-exp-03-25",
+      "reason": "Latest experimental features with ultra-long context and output support"
+    },
+    "image_generation": {
+      "recommended_model": "models/gemini-2.0-flash-exp-image-generation",
+      "reason": "Specialized for image generation tasks"
+    },
+    "production": {
+      "recommended_model": "models/gemini-2.0-flash-001",
+      "reason": "Stable version with good balance of performance and efficiency"
+    }
+  },
+  "feature_comparison": {
+    "context_window": {
+      "gemini_2_5_pro": "1,048,576 tokens",
+      "gemini_2_0_flash": "1,048,576 tokens",
+      "gemini_2_0_flash_thinking": "1,048,576 tokens",
+      "gemini_2_0_flash_lite": "1,048,576 tokens"
+    },
+    "max_output": {
+      "gemini_2_5_pro": "65,536 tokens",
+      "gemini_2_0_flash": "8,192 tokens",
+      "gemini_2_0_flash_thinking": "65,536 tokens",
+      "gemini_2_0_flash_lite": "8,192 tokens"
+    },
+    "default_temperature": {
+      "gemini_2_5_pro": 1.0,
+      "gemini_2_0_flash": 1.0,
+      "gemini_2_0_flash_thinking": 0.7,
+      "gemini_2_0_flash_lite": 1.0
+    },
+    "key_advantages": {
+      "gemini_2_5_pro": "最新技术、最强大的能力",
+      "gemini_2_0_flash": "速度快、多功能性",
+      "gemini_2_0_flash_thinking": "推理能力强、结果一致性好",
+      "gemini_2_0_flash_lite": "轻量级、资源效率高"
+    }
+  },
+  "timeline": [
+    {
+      "date": "2025-03-25",
+      "models": ["models/gemini-2.5-pro-exp-03-25", "models/gemini-2.0-pro-exp"],
+      "event": "Release of latest experimental Gemini 2.5 Pro versions"
+    },
+    {
+      "date": "2025-02-05",
+      "models": ["models/gemini-2.0-pro-exp-02-05", "models/gemini-2.0-flash-lite-preview-02-05"],
+      "event": "Release of experimental Pro and Flash Lite preview versions"
+    },
+    {
+      "date": "2025-01-21",
+      "models": ["models/gemini-2.0-flash-thinking-exp-01-21"],
+      "event": "Release of Flash Thinking experimental version"
+    },
+    {
+      "date": "2025-01",
+      "models": ["models/gemini-2.0-flash-001"],
+      "event": "Stable release of Gemini 2.0 Flash"
+    },
+    {
+      "date": "2024-12-19",
+      "models": ["models/gemini-2.0-flash-thinking-exp-1219"],
+      "event": "First experimental Flash Thinking version"
+    },
+    {
+      "date": "2024-12-06",
+      "models": ["models/gemini-exp-1206"],
+      "event": "Early experimental Gemini version"
+    }
+  ]
+} 

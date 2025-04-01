@@ -49,13 +49,48 @@ export default function Home() {
     [
       {
         time: '2025年03月25日',
-        name: 'Gemini 2.5 Pro Experimental\rgemini-2.5-pro-exp-03-25',
-        description:
-          '<model>-<generation>-<variation>-<version>\n' +
-          '模型名称：Gemini\n' +
-          'generation：2.5这一代\n' +
-          'variation：pro变体\n' +
-          '版本：实验版本exp-03-25',
+        name: 'models/gemini-2.5-pro-exp-03-25',
+        description: `最新的实验性Gemini 2.5 Pro版本，具有超长上下文和输出支持` 
+      },
+      {
+        time: '2025年02月05日',
+        name: 'models/gemini-2.0-pro-exp-02-05',
+        description: `Pro系列实验版本，同样指向2.5实验功能` 
+      },
+      {
+        time: '2025年02月05日',
+        name: 'models/gemini-2.0-flash-lite-preview-02-05',
+        description: `Flash Lite的预览版本，轻量级设计适合资源受限环境` 
+      },
+      {
+        time: '2025年01月21日',
+        name: 'models/gemini-2.0-flash-thinking-exp-01-21',
+        description: `Flash Thinking实验版本，专注于优化推理能力，温度值0.7` 
+      },
+      {
+        time: '2025年01月',
+        name: 'models/gemini-2.0-flash-001',
+        description: `Gemini 2.0 Flash的稳定版本发布，适合生产环境` 
+      },
+      {
+        time: '2025年01月',
+        name: 'models/gemini-2.0-flash-lite-001',
+        description: `Flash Lite稳定版，轻量级设计，资源效率高` 
+      },
+      {
+        time: '2025年01月',
+        name: 'models/gemini-2.0-flash-exp-image-generation',
+        description: `专为图像生成任务优化的实验性Flash版本` 
+      },
+      {
+        time: '2024年12月19日',
+        name: 'models/gemini-2.0-flash-thinking-exp-1219',
+        description: `首个Flash Thinking实验版本，推理能力强、一致性好` 
+      },
+      {
+        time: '2024年12月06日',
+        name: 'models/gemini-exp-1206',
+        description: `早期实验性Gemini版本，已指向2.5 Pro功能` 
       },
     ],
     // 第二个格子 - OpenAI GPT系列
@@ -318,12 +353,14 @@ export default function Home() {
           {/* 第一行第一列 - Gemini系列 */}
           <div className='border-r border-b p-0 flex flex-col'>
             <div className='flex justify-between items-center border-b p-2 bg-gray-50'>
-              <h3 className='font-bold text-lg flex items-center'>
-                <span className='mr-2 flex items-center'>
-                  <Image src='/google-color.svg' alt='Google Logo' width={20} height={20} className='mr-1' />
-                </span>
-                <span className='text-[#4285F4]'>Google Gemini</span>
-              </h3>
+              <Link href='https://gemini.google.com/' target='_blank' rel='noopener noreferrer'>
+                <h3 className='font-bold text-lg flex items-center hover:underline'>
+                  <span className='mr-2 flex items-center'>
+                    <Image src='/google-color.svg' alt='Google Logo' width={20} height={20} className='mr-1' />
+                  </span>
+                  <span className='text-[#4285F4]'>Google Gemini</span>
+                </h3>
+              </Link>
               <div className='flex items-center'>
                 <Button
                   variant='ghost'
@@ -332,7 +369,7 @@ export default function Home() {
                   onClick={() => 
                     openTipDialog(
                       'Google Gemini 使用提示', 
-                      '• Gemini支持多模态理解与生成\n• Gemini 2.5支持更长的上下文窗口\n• 具有思考功能(Thinking)的模型更善于复杂推理\n• 通过Google开发者平台可以使用API\n• 可在多种设备上使用Gemini，包括Android和Chrome浏览器'
+                      '• 2.5 Pro: 最新实验性功能，超长上下文窗口(100万+ tokens)\n• Flash系列: 速度快、响应迅速，适合实时应用\n• Flash Thinking: 特别优化推理能力，温度值较低(0.7)\n• Flash Lite: 轻量级设计，适合资源受限环境\n• 所有模型均支持多模态输入，包括文本、图像等'
                     )
                   }
                 >
@@ -359,13 +396,7 @@ export default function Home() {
                   {gridData[0]?.map((item, index) => (
                     <tr
                       key={index}
-                      className='hover:bg-gray-100 cursor-pointer'
-                      onClick={() =>
-                        window.open(
-                          'https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#gemini-2-5-thinking',
-                          '_blank'
-                        )
-                      }
+                      className='hover:bg-gray-100'
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
                       <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
