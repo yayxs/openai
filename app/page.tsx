@@ -4,7 +4,7 @@ import Particles from '@/components/Particles/Particles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Footer } from '@/components/ui/footer'
-import { Github, Twitter, Maximize2, Info } from 'lucide-react'
+import { Github, Twitter, Maximize2, Info, Code } from 'lucide-react'
 import { useState } from 'react'
 import { Dialog } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -723,6 +723,11 @@ export default function Home() {
               icon: <Twitter className='h-5 w-5' />,
               href: 'https://x.com/10k_ai',
               label: 'X (Twitter)',
+            },
+            {
+              icon: <Code className='h-5 w-5' />,
+              href: 'https://aicoding.vercel.app/',
+              label: 'AI Coding',
             },
           ]}
           mainLinks={[
