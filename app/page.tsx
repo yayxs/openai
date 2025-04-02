@@ -4,12 +4,14 @@ import Particles from '@/components/Particles/Particles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Footer } from '@/components/ui/footer'
-import { Github, Twitter, Maximize2, Info, Code } from 'lucide-react'
+import { Github, Twitter, Maximize2, Info, Code, Lightbulb } from 'lucide-react'
 import { useState } from 'react'
 import { Dialog } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter();
   // 状态管理
   const [dialogOpen, setDialogOpen] = useState(false)
   const [activeGridIndex, setActiveGridIndex] = useState<number | null>(null)
@@ -42,6 +44,28 @@ export default function Home() {
   const closeTipDialog = () => {
     setTipDialogOpen(false)
   }
+
+  // 添加一个处理行点击的函数
+  const handleRowClick = (modelName: string) => {
+    // 将模型名转换为URL参数格式 - 处理特殊格式的模型名称
+    let modelParam = '';
+    
+    // 特殊情况处理
+    if (modelName === 'OpenAI o3-mini') {
+      modelParam = 'openai-o3-mini';
+    } else if (modelName === 'Claude 3.7 Sonnet') {
+      modelParam = 'claude-3.7-sonnet';
+    } else {
+      // 通用情况：转小写，替换空格和特殊字符为连字符
+      modelParam = modelName.toLowerCase()
+        .replace(/\s+/g, '-')       // 空格替换为连字符
+        .replace(/\//g, '-')        // 斜杠替换为连字符
+        .replace(/\./g, '-')        // 点号替换为连字符
+        .replace(/[^\w\-]/g, '');   // 移除其他特殊字符
+    }
+    
+    router.push(`/model/${modelParam}`);
+  };
 
   // 模拟数据 - 每个格子的表格数据（每个格子是一个数据集，包含多行数据）
   const gridData = [
@@ -107,8 +131,9 @@ export default function Home() {
       },
       {
         time: '2025年01月31日',
-        name: 'o3-mini/o3-mini-2025-01-31',
-        description: '',
+        name: 'OpenAI o3-mini',
+        description: 'o3-mini-2025-01-31',
+        isReasoning: true
       },
       {
         time: '2024年12月17日',
@@ -203,6 +228,7 @@ export default function Home() {
         time: '2025年02月19日',
         name: 'Claude 3.7 Sonnet',
         description: '具有推理能力的模型',
+        isReasoning: true
       },
       {
         time: '2024年10月22日',
@@ -396,11 +422,15 @@ export default function Home() {
                   {gridData[0]?.map((item, index) => (
                     <tr
                       key={index}
-                      className='hover:bg-gray-100'
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
-                      <td className='p-1 py-2 border-b whitespace-pre-line'>{item.description}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
+                      <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -423,19 +453,6 @@ export default function Home() {
                 <Button
                   variant='ghost'
                   size='icon'
-                  className='h-8 w-8 rounded-full hover:bg-gray-100 mr-1'
-                  onClick={() => 
-                    openTipDialog(
-                      'OpenAI ChatGPT 使用提示', 
-                      '• GPT-4o是当前最先进的多模态模型\n• 支持128K上下文窗口，特殊场景最高可达1M\n• 擅长编程、多语言翻译和创意写作\n• 最新模型支持实时搜索和插件集成\n• 提供完善的API文档和开发者工具'
-                    )
-                  }
-                >
-                  <Info className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  size='icon'
                   className='h-8 w-8 rounded-full hover:bg-gray-100'
                   onClick={() => openFullscreen(1, 'OpenAI ChatGPT')}
                 >
@@ -452,9 +469,16 @@ export default function Home() {
                 </colgroup>
                 <tbody>
                   {gridData[1]?.map((item, index) => (
-                    <tr key={index} className='hover:bg-gray-50 even:bg-gray-50/30'>
+                    <tr 
+                      key={index} 
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
+                    >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
@@ -509,10 +533,14 @@ export default function Home() {
                   {gridData[2]?.map((item, index) => (
                     <tr
                       key={index}
-                      className='hover:bg-gray-50 even:bg-gray-50/30'
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
@@ -552,9 +580,16 @@ export default function Home() {
                 </colgroup>
                 <tbody>
                   {gridData[3]?.map((item, index) => (
-                    <tr key={index} className='hover:bg-gray-50 even:bg-gray-50/30'>
+                    <tr 
+                      key={index} 
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
+                    >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
@@ -595,9 +630,16 @@ export default function Home() {
                 </colgroup>
                 <tbody>
                   {gridData[4]?.map((item, index) => (
-                    <tr key={index} className='hover:bg-gray-50 even:bg-gray-50/30'>
+                    <tr 
+                      key={index} 
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
+                    >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
@@ -648,9 +690,16 @@ export default function Home() {
                 </colgroup>
                 <tbody>
                   {gridData[5]?.map((item, index) => (
-                    <tr key={index} className='hover:bg-gray-50 even:bg-gray-50/30'>
+                    <tr 
+                      key={index} 
+                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
+                      onClick={() => handleRowClick(item.name)}
+                    >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
-                      <td className='p-1 py-2 border-b font-medium break-words'>{item.name}</td>
+                      <td className='p-1 py-2 border-b font-medium break-words'>
+                        {item.name}
+                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                      </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
                   ))}
@@ -680,9 +729,16 @@ export default function Home() {
               </thead>
               <tbody>
                 {gridData[activeGridIndex]?.map((item, index) => (
-                  <tr key={index} className='hover:bg-gray-50 border-b even:bg-gray-50/30'>
+                  <tr 
+                    key={index} 
+                    className='hover:bg-gray-50 border-b even:bg-gray-50/30 cursor-pointer'
+                    onClick={() => handleRowClick(item.name)}
+                  >
                     <td className='p-2 py-3 whitespace-nowrap'>{item.time}</td>
-                    <td className='p-2 py-3 font-medium break-words'>{item.name}</td>
+                    <td className='p-2 py-3 font-medium break-words'>
+                      {item.name}
+                      {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
+                    </td>
                     <td className='p-2 py-3 whitespace-pre-line'>{item.description}</td>
                   </tr>
                 ))}
