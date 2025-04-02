@@ -17,4 +17,11 @@ export interface ModelProvider {
   url: string;
   tipTitle: string;
   tipContent: string;
+}
+
+// 定义ModelGrid组件的属性类型
+export interface ModelGridProps {
+  gridData: GridData;
+  modelProviders: ModelProvider[];
+  availableModels: string[];
 } 

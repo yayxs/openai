@@ -4,17 +4,29 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Maximize2, Info, Lightbulb, Search as SearchIcon } from 'lucide-react'
+import { Maximize2, Info, Lightbulb, Search as SearchIcon, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog } from '@/components/ui/dialog'
-import { GridData, ModelProvider } from '@/types'
+import { GridData, ModelProvider, ModelGridProps } from '@/types'
 
-interface ModelGridProps {
-  gridData: GridData;
-  modelProviders: ModelProvider[];
-}
+// 工具函数：获取模型ID
+const getModelId = (modelName: string): string => {
+  // 特殊情况处理
+  if (modelName === 'OpenAI o3-mini') {
+    return 'openai-o3-mini';
+  } else if (modelName === 'Claude 3.7 Sonnet') {
+    return 'claude-3.7-sonnet';
+  } else {
+    // 通用情况：转小写，替换空格和特殊字符为连字符
+    return modelName.toLowerCase()
+      .replace(/\s+/g, '-')       // 空格替换为连字符
+      .replace(/\//g, '-')        // 斜杠替换为连字符
+      .replace(/\./g, '-')        // 点号替换为连字符
+      .replace(/[^\w\-]/g, '');   // 移除其他特殊字符
+  }
+};
 
-export default function ModelGrid({ gridData, modelProviders }: ModelGridProps) {
+export default function ModelGrid({ gridData, modelProviders, availableModels }: ModelGridProps) {
   const router = useRouter();
   
   // 状态管理
@@ -52,24 +64,21 @@ export default function ModelGrid({ gridData, modelProviders }: ModelGridProps) 
 
   // 添加一个处理行点击的函数
   const handleRowClick = (modelName: string) => {
-    // 将模型名转换为URL参数格式 - 处理特殊格式的模型名称
-    let modelParam = '';
+    const modelId = getModelId(modelName);
     
-    // 特殊情况处理
-    if (modelName === 'OpenAI o3-mini') {
-      modelParam = 'openai-o3-mini';
-    } else if (modelName === 'Claude 3.7 Sonnet') {
-      modelParam = 'claude-3.7-sonnet';
+    // 检查是否有对应的MDX文件
+    if (availableModels.includes(modelId)) {
+      router.push(`/model/${modelId}`);
     } else {
-      // 通用情况：转小写，替换空格和特殊字符为连字符
-      modelParam = modelName.toLowerCase()
-        .replace(/\s+/g, '-')       // 空格替换为连字符
-        .replace(/\//g, '-')        // 斜杠替换为连字符
-        .replace(/\./g, '-')        // 点号替换为连字符
-        .replace(/[^\w\-]/g, '');   // 移除其他特殊字符
+      // 如果没有可用的MDX文件，不执行任何操作
+      console.log(`No MDX file available for model: ${modelName}`);
     }
-    
-    router.push(`/model/${modelParam}`);
+  };
+
+  // 检查模型是否有可用的MDX文件
+  const isModelAvailable = (modelName: string): boolean => {
+    const modelId = getModelId(modelName);
+    return availableModels.includes(modelId);
   };
 
   return (
@@ -132,14 +141,21 @@ export default function ModelGrid({ gridData, modelProviders }: ModelGridProps) 
                   {gridData[index]?.map((item, i) => (
                     <tr
                       key={i}
-                      className='hover:bg-gray-50 even:bg-gray-50/30 cursor-pointer'
-                      onClick={() => handleRowClick(item.name)}
+                      className={`hover:bg-gray-50 even:bg-gray-50/30 ${isModelAvailable(item.name) ? 'cursor-pointer' : ''}`}
+                      onClick={() => isModelAvailable(item.name) && handleRowClick(item.name)}
                     >
                       <td className='p-1 py-2 border-b whitespace-nowrap'>{item.time}</td>
                       <td className='p-1 py-2 border-b font-medium break-words'>
                         {item.name}
-                        {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
-                        {item.name === 'OpenAI o3-mini' && <SearchIcon className='inline-block ml-1 h-4 w-4 text-gray-500' aria-label='搜索' />}
+                        {item.isReasoning && (
+                          <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />
+                        )}
+                        {item.name === 'OpenAI o3-mini' && (
+                          <SearchIcon className='inline-block ml-1 h-4 w-4 text-gray-500' aria-label='搜索' />
+                        )}
+                        {isModelAvailable(item.name) && (
+                          <ExternalLink className='inline-block ml-1 h-4 w-4 text-blue-500' aria-label='查看详情' />
+                        )}
                       </td>
                       <td className='p-1 py-2 border-b'>{item.description}</td>
                     </tr>
@@ -172,14 +188,21 @@ export default function ModelGrid({ gridData, modelProviders }: ModelGridProps) 
                 {gridData[activeGridIndex]?.map((item, index) => (
                   <tr 
                     key={index} 
-                    className='hover:bg-gray-50 border-b even:bg-gray-50/30 cursor-pointer'
-                    onClick={() => handleRowClick(item.name)}
+                    className={`hover:bg-gray-50 border-b even:bg-gray-50/30 ${isModelAvailable(item.name) ? 'cursor-pointer' : ''}`}
+                    onClick={() => isModelAvailable(item.name) && handleRowClick(item.name)}
                   >
                     <td className='p-2 py-3 whitespace-nowrap'>{item.time}</td>
                     <td className='p-2 py-3 font-medium break-words'>
                       {item.name}
-                      {item.isReasoning && <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />}
-                      {item.name === 'OpenAI o3-mini' && <SearchIcon className='inline-block ml-1 h-4 w-4 text-gray-500' aria-label='搜索' />}
+                      {item.isReasoning && (
+                        <Lightbulb className='inline-block ml-1 h-4 w-4 text-amber-500' aria-label='推理模型' />
+                      )}
+                      {item.name === 'OpenAI o3-mini' && (
+                        <SearchIcon className='inline-block ml-1 h-4 w-4 text-gray-500' aria-label='搜索' />
+                      )}
+                      {isModelAvailable(item.name) && (
+                        <ExternalLink className='inline-block ml-1 h-4 w-4 text-blue-500' aria-label='查看详情' />
+                      )}
                     </td>
                     <td className='p-2 py-3 whitespace-pre-line'>{item.description}</td>
                   </tr>
