@@ -64,8 +64,8 @@ const gridData: ModelItem[][] = [
     },
     {
       time: '2025年02月27日',
-      name: 'gpt-4.5-preview/gpt-4.5-preview-2025-02-27',
-      description: '最大最能干聊天模型',
+      name: 'GPT‑4.5',
+      description: 'gpt-4.5-preview/gpt-4.5-preview-2025-02-27',
     },
     {
       time: '2025年01月31日',
@@ -380,6 +380,10 @@ export default function Home() {
             },
           ]}
           mainLinks={[
+            {
+              href: 'https://help.openai.com/en/articles/7864572-what-is-the-chatgpt-model-selector',
+              label: 'OpenAI ChatGPT 模型选择器',
+            },
             {
               href: 'https://docs.x.ai/docs/models?cluster=us-east-1#model-constraints',
               label: 'xAI Grok Models and Pricing',
