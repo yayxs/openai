@@ -26,8 +26,11 @@ function getMdxContent(modelId: string) {
 }
 
 // 模型详情页面 - 服务器组件
-export default function ModelDetailPage({ params }: { params: { modelId: string } }) {
-  const modelId = params.modelId
+export default async function ModelDetailPage({ params }: { params: { modelId: string } }) {
+  // 确保 params 已被等待
+  const paramValues = await params;
+  const modelId = paramValues.modelId;
+  
   const modelName = getDisplayName(modelId)
   const mdxContent = getMdxContent(modelId)
   
