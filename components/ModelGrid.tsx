@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Maximize2, Info, Lightbulb, Search as SearchIcon, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog } from '@/components/ui/dialog'
-import { GridData, ModelProvider, ModelGridProps } from '@/types'
+import { ModelGridProps } from '@/types'
 
 // 工具函数：获取模型ID
 const getModelId = (modelName: string): string => {

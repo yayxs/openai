@@ -28,13 +28,22 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     
     // 自定义图片组件，使用Next.js的Image
-    img: (props) => (
-      <Image
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-        {...(props as ImageProps)}
-      />
-    ),
+    img: (props) => {
+      // 确保有alt属性
+      const imageProps = { ...props } as ImageProps;
+      if (!imageProps.alt) {
+        imageProps.alt = '';
+      }
+      
+      return (
+        <Image
+          sizes="100vw"
+          
+          style={{ width: '100%', height: 'auto' }}
+          {...imageProps}
+        />
+      );
+    },
     
     // 标题组件
     h1: ({ children, ...props }) => (

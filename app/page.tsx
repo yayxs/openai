@@ -3,7 +3,6 @@ import { Footer } from '@/components/ui/footer'
 import { Github, Twitter, Code } from 'lucide-react'
 import { ModelItem } from '@/types'
 import ModelGrid from '@/components/ModelGrid'
-import ClientParticles from '@/components/ClientParticles'
 import fs from 'fs'
 import path from 'path'
 
@@ -375,17 +374,16 @@ export default function Home() {
   const availableModels = getAvailableModels();
 
   return (
-    <div className='flex flex-col h-screen overflow-hidden'>
-      {/* 粒子背景 - 客户端组件包装 */}
-      <ClientParticles />
-
-      {/* 主要内容区 */}
+    <div className='flex flex-col h-screen overflow-hidden relative'>
+      {/* 主要内容区 - 降低透明度让背景可见 */}
       <main className='relative z-10 flex-grow p-2 flex flex-col h-[calc(100vh-80px)] md:h-[calc(100vh-60px)]'>
-        <ModelGrid gridData={gridData} modelProviders={modelProviders} availableModels={availableModels} />
+        <div className='w-full rounded-lg overflow-hidden bg-white/95 backdrop-blur-md h-full'>
+          <ModelGrid gridData={gridData} modelProviders={modelProviders} availableModels={availableModels} />
+        </div>
       </main>
 
       {/* 页脚 */}
-      <div className='relative z-10 bg-white/90 backdrop-blur-sm min-h-[70px] md:h-[60px] flex items-center'>
+      <div className='relative z-10 bg-white/95 backdrop-blur-md min-h-[70px] md:h-[60px] flex items-center'>
         <Footer
           logo={<Image src='/window.svg' alt='LLMs Name Logo' width={24} height={24} />}
           brandName='LLMs Name'
