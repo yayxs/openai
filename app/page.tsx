@@ -1,28 +1,28 @@
-import Image from 'next/image'
-import { Footer } from '@/components/ui/footer'
-import { Github, Twitter, Code } from 'lucide-react'
-import { ModelItem } from '@/types'
-import ModelGrid from '@/components/ModelGrid'
-import fs from 'fs'
-import path from 'path'
-
-// 获取可用的MDX文件列表
-function getAvailableModels() {
-  try {
-    const modelsDir = path.join(process.cwd(), 'models')
-    const files = fs.readdirSync(modelsDir)
-    return files
-      .filter(file => file.endsWith('.mdx'))
-      .map(file => file.replace('.mdx', ''))
-  } catch (error) {
-    console.error('Error reading models directory:', error)
-    return []
-  }
+// 定义模型数据项的类型
+export interface ModelItem {
+  time: string;
+  name: string;
+  description: string;
+  isReasoning?: boolean;
 }
 
-// 模型数据 - 每个格子的表格数据
-const gridData: ModelItem[][] = [
-  // 第一个格子 - Google Gemini系列
+// 定义网格数据的类型
+export type GridData = ModelItem[][];
+
+// 定义模型提供商信息的类型
+export interface ModelProvider {
+  id: string;
+  name: string;
+  logo: string;
+  color: string;
+  url: string;
+  tipTitle: string;
+  tipContent: string;
+}
+
+// 模型数据
+const modelsData: ModelItem[][] = [
+  // Google Gemini系列
   [
     {
       time: '2025年03月25日',
@@ -70,7 +70,7 @@ const gridData: ModelItem[][] = [
       description: `早期实验性Gemini版本，已指向2.5 Pro功能`
     },
   ],
-  // 第二个格子 - OpenAI GPT系列
+  // OpenAI ChatGPT系列
   [
     {
       time: '2025年03月27日',
@@ -190,7 +190,7 @@ const gridData: ModelItem[][] = [
       description: '',
     },
   ],
-  // 第三个格子 - Anthropic Claude系列
+  // Anthropic Claude系列
   [
     {
       time: '2025年02月19日',
@@ -229,7 +229,7 @@ const gridData: ModelItem[][] = [
       description: 'claude-3-sonnet-20240229',
     },
   ],
-  // 第四个格子 - xAI Grok系列
+  // xAI Grok系列
   [
     {
       time: '2025年02月17日',
@@ -262,7 +262,7 @@ const gridData: ModelItem[][] = [
       description: '',
     },
   ],
-  // 第五个格子 - DeepSeek
+  // DeepSeek
   [
     {
       time: '2025年03月24日',
@@ -324,111 +324,19 @@ const gridData: ModelItem[][] = [
   [],
 ];
 
-// 定义模型提供商信息
-const modelProviders = [
-  {
-    name: 'Google Gemini',
-    logo: '/google-color.svg',
-    color: '#4285F4',
-    url: 'https://gemini.google.com/',
-    tipTitle: 'Google Gemini 使用提示',
-    tipContent: '• 2.5 Pro: 最新实验性功能，超长上下文窗口(100万+ tokens)\n• Flash系列: 速度快、响应迅速，适合实时应用\n• Flash Thinking: 特别优化推理能力，温度值较低(0.7)\n• Flash Lite: 轻量级设计，适合资源受限环境\n• 所有模型均支持多模态输入，包括文本、图像等'
-  },
-  {
-    name: 'OpenAI ChatGPT',
-    logo: '/openai.svg',
-    color: '#10A37F',
-    url: 'https://chatgpt.com/',
-    tipTitle: '',
-    tipContent: '• GPT-4o是当前最先进的多模态模型\n• 支持128K上下文窗口，特殊场景最高可达1M\n• 擅长编程、多语言翻译和创意写作\n• 最新模型支持实时搜索和插件集成\n• 提供完善的API文档和开发者工具'
-  },
-  {
-    name: 'Anthropic Claude',
-    logo: '/anthropic.svg',
-    color: '#7B61FF',
-    url: 'https://claude.ai/',
-    tipTitle: 'Anthropic Claude 使用提示',
-    tipContent: '•  需要快速响应和低成本：选择Claude 3 Haiku或Claude 3.5 Haiku\n•  追求性价比和企业级应用：选择Claude 3 Sonnet、Claude 3.5 Sonnet或Claude 3.7 Sonnet\n•  需要顶级性能处理复杂任务：选择Claude 3 Opus'
-  },
-  {
-    name: 'xAI Grok',
-    logo: '/xai.svg',
-    color: '#000000',
-    url: 'https://grok.com/',
-    tipTitle: '',
-    tipContent: ''
-  },
-  {
-    name: 'DeepSeek DeepSeek',
-    logo: '/deepseek-color.svg',
-    color: '#4D6BFE',
-    url: 'https://chat.deepseek.com/',
-    tipTitle: '',
-    tipContent: ''
-  },
-
-];
 
 export default function Home() {
-  // 获取可用的模型列表
-  const availableModels = getAvailableModels();
+  
 
   return (
-    <div className='flex flex-col h-screen overflow-hidden relative'>
-      {/* 主要内容区 - 降低透明度让背景可见 */}
-      <main className='relative z-10 flex-grow p-2 flex flex-col h-[calc(100vh-80px)] md:h-[calc(100vh-60px)]'>
-        <div className='w-full rounded-lg overflow-hidden bg-white/95 backdrop-blur-md h-full'>
-          <ModelGrid gridData={gridData} modelProviders={modelProviders} availableModels={availableModels} />
-        </div>
+    <div className='flex flex-col h-screen overflow-auto relative'>
+      
+      {/* 主要内容区 */}
+      <main className='relative z-10 flex-grow p-2 flex flex-col'> 
+       
       </main>
 
-      {/* 页脚 */}
-      <div className='relative z-10 bg-white/95 backdrop-blur-md min-h-[70px] md:h-[60px] flex items-center'>
-        <Footer
-          logo={<Image src='/window.svg' alt='LLMs Name Logo' width={24} height={24} />}
-          brandName='LLMs Name'
-          socialLinks={[
-            {
-              icon: <Github className='h-5 w-5' />,
-              href: 'https://github.com/yayxs/llm-name',
-              label: 'GitHub',
-            },
-            {
-              icon: <Twitter className='h-5 w-5' />,
-              href: 'https://x.com/10k_ai',
-              label: 'X (Twitter)',
-            },
-            {
-              icon: <Code className='h-5 w-5' />,
-              href: 'https://aicoding.vercel.app/',
-              label: 'AI Coding',
-            },
-          ]}
-          mainLinks={[
-            {
-              href: 'https://help.openai.com/en/articles/7864572-what-is-the-chatgpt-model-selector',
-              label: 'OpenAI ChatGPT 模型选择器',
-            },
-            {
-              href: 'https://docs.x.ai/docs/models?cluster=us-east-1#model-constraints',
-              label: 'xAI Grok Models and Pricing',
-            },
-            {
-              href: 'https://docs.anthropic.com/zh-CN/docs/about-claude/models/all-models',
-              label: 'Anthropic Claude 模型列表',
-            },
-            {
-              href: 'https://api-docs.deepseek.com/zh-cn/news/news1210',
-              label: 'DeepSeek API 文档 - 新闻',
-            },
-          ]}
-          legalLinks={[]}
-          copyright={{
-            text: `© ${new Date().getFullYear()} LLMs Name`,
-            license: 'MIT License',
-          }}
-        />
-      </div>
+      
     </div>
   )
 }

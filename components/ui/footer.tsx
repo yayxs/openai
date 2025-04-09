@@ -1,6 +1,3 @@
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-
 interface FooterProps {
   logo: React.ReactNode
   brandName: string
@@ -23,25 +20,25 @@ interface FooterProps {
   }
 }
 
-export function Footer({ logo, brandName, socialLinks, mainLinks, copyright }: FooterProps) {
+export function Footer({
+  socialLinks,
+  mainLinks,
+  copyright,
+}: FooterProps) {
   return (
-    <footer className='py-2 w-full'>
-      <div className='px-4 lg:px-6 flex flex-col md:flex-row items-center justify-between'>
-        <div className='flex items-center mb-2 md:mb-0'>
-          <Link href='/' className='flex items-center gap-x-2' aria-label={brandName}>
-            {logo}
-            <span className='font-bold text-base'>{brandName}</span>
-          </Link>
-          
-          <div className='ml-6 hidden md:flex'>
-            <ul className='flex list-none space-x-6 flex-wrap'>
+    <footer className="py-6">
+      <div className="px-4 container mx-auto">
+        {/* 简化主链接区域 - 水平单行排列 */}
+        {mainLinks.length > 0 && (
+          <div className="overflow-x-auto pb-4">
+            <ul className="flex space-x-6 min-w-max">
               {mainLinks.map((link, i) => (
-                <li key={i} className='shrink-0 mb-1'>
+                <li key={i} className="shrink-0">
                   <a
                     href={link.href}
-                    className='text-sm text-primary underline-offset-4 hover:underline whitespace-nowrap'
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    className="text-sm text-gray-500 hover:text-gray-800 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {link.label}
                   </a>
@@ -49,42 +46,38 @@ export function Footer({ logo, brandName, socialLinks, mainLinks, copyright }: F
               ))}
             </ul>
           </div>
-        </div>
-
-        {/* 移动端显示的链接 */}
-        <div className='md:hidden flex w-full mb-2 overflow-x-auto py-1 px-1'>
-          <ul className='flex list-none space-x-5'>
-            {mainLinks.map((link, i) => (
-              <li key={i} className='shrink-0'>
-                <a
-                  href={link.href}
-                  className='text-xs text-primary underline-offset-4 hover:underline whitespace-nowrap'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className='flex items-center space-x-3'>
-          <div className='text-xs text-muted-foreground hidden md:block'>
+        )}
+        
+        {/* 分隔线 */}
+        <div className="border-t border-gray-100 my-4"></div>
+        
+        {/* 版权和社交链接 */}
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          {/* 版权信息 */}
+          <div className="text-sm text-gray-400 flex flex-col md:flex-row md:items-center md:space-x-2">
             <div>{copyright.text}</div>
+            {copyright.license && <div className="hidden md:inline">•</div>}
+            {copyright.license && <div>{copyright.license}</div>}
           </div>
-
-          <ul className='flex list-none space-x-2'>
-            {socialLinks.map((link, i) => (
-              <li key={i}>
-                <Button variant='secondary' size='icon' className='h-8 w-8 rounded-full' asChild>
-                  <a href={link.href} target='_blank' aria-label={link.label}>
+          
+          {/* 社交链接 */}
+          {socialLinks.length > 0 && (
+            <ul className="flex space-x-4">
+              {socialLinks.map((link, i) => (
+                <li key={i}>
+                  <a 
+                    href={link.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label={link.label}
+                    className="text-gray-400 hover:text-gray-700 transition-colors"
+                  >
                     {link.icon}
                   </a>
-                </Button>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </footer>
