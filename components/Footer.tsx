@@ -1,3 +1,5 @@
+'use client';
+
 import { Footer as UIFooter } from '@/components/ui/footer';
 import { Github, Twitter, Code } from 'lucide-react';
 

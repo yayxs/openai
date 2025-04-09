@@ -1,3 +1,6 @@
+import ModelList from '@/components/ModelList';
+import Header from '@/components/Header';
+
 // 定义模型数据项的类型
 export interface ModelItem {
   time: string;
@@ -15,9 +18,6 @@ export interface ModelProvider {
   name: string;
   logo: string;
   color: string;
-  url: string;
-  tipTitle: string;
-  tipContent: string;
 }
 
 // 模型数据
@@ -324,19 +324,79 @@ const modelsData: ModelItem[][] = [
   [],
 ];
 
+// 定义模型提供商
+const modelProviders = [
+  {
+    id: 'gemini',
+    name: 'Google Gemini',
+    logo: '/google-color.svg',
+    color: '#4285F4',
+  },
+  {
+    id: 'chatgpt',
+    name: 'OpenAI ChatGPT',
+    logo: '/openai.svg',
+    color: '#10A37F',
+  },
+  {
+    id: 'claude',
+    name: 'Anthropic Claude',
+    logo: '/anthropic.svg',
+    color: '#7B61FF',
+  },
+  {
+    id: 'grok',
+    name: 'xAI Grok',
+    logo: '/xai.svg',
+    color: '#000000',
+  },
+  {
+    id: 'deepseek',
+    name: 'DeepSeek',
+    logo: '/deepseek-color.svg',
+    color: '#4D6BFE',
+  },
+  {
+    id: 'llama',
+    name: 'Meta Llama',
+    logo: '/meta-color.svg',
+    color: '#0066FF',
+  },
+];
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  // 从searchParams获取选中的模型索引，如果没有则默认为0
+  const modelIndex = typeof searchParams.model === 'string' 
+    ? parseInt(searchParams.model) 
+    : 0;
   
+  // 确保modelIndex是有效的
+  const selectedModelIndex = isNaN(modelIndex) || modelIndex < 0 || modelIndex >= modelProviders.length 
+    ? 0 
+    : modelIndex;
 
   return (
-    <div className='flex flex-col h-screen overflow-auto relative'>
-      
-      {/* 主要内容区 */}
-      <main className='relative z-10 flex-grow p-2 flex flex-col'> 
-       
-      </main>
-
-      
-    </div>
-  )
+    <>
+      <Header selectedIndex={selectedModelIndex} />
+      <div className='bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6'>
+        <h2 className='text-xl font-bold mb-4 flex items-center'>
+          <img 
+            src={modelProviders[selectedModelIndex].logo} 
+            alt={modelProviders[selectedModelIndex].name} 
+            className="w-6 h-6 mr-2"
+          />
+          <span style={{ color: modelProviders[selectedModelIndex].color }}>
+            {modelProviders[selectedModelIndex].name} 模型列表
+          </span>
+        </h2>
+        
+        {/* 模型列表组件 */}
+        <ModelList models={modelsData[selectedModelIndex]} />
+      </div>
+    </>
+  );
 }

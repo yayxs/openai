@@ -2,7 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Header() {
+interface HeaderProps {
+  selectedIndex: number;
+}
+
+export default function Header({ selectedIndex }: HeaderProps) {
   const models = [
     { name: 'Gemini', logo: '/google-color.svg' },
     { name: 'ChatGPT', logo: '/openai.svg' },
@@ -17,20 +21,26 @@ export default function Header() {
       <div className="container mx-auto">
         <div className="flex h-16 items-center justify-center">
           <nav className="flex items-center space-x-10">
-            {models.map((model) => (
+            {models.map((model, index) => (
               <Link 
                 key={model.name}
-                href={`#${model.name.toLowerCase()}`}
-                className="flex flex-col items-center justify-center transition-all hover:scale-110"
+                href={`/?model=${index}`}
+                className={`flex flex-col items-center justify-center transition-all ${
+                  selectedIndex === index 
+                    ? 'scale-110 text-blue-600' 
+                    : 'text-gray-600 hover:scale-105'
+                }`}
               >
-                <Image
-                  src={model.logo}
-                  alt={`${model.name} logo`}
-                  width={28}
-                  height={28}
-                  className="h-7 w-7 object-contain"
-                />
-                <span className="mt-1 text-xs text-gray-600">{model.name}</span>
+                <div className={`p-1.5 rounded-full ${selectedIndex === index ? 'bg-blue-50' : ''}`}>
+                  <Image
+                    src={model.logo}
+                    alt={`${model.name} logo`}
+                    width={28}
+                    height={28}
+                    className="h-7 w-7 object-contain"
+                  />
+                </div>
+                <span className="mt-1 text-xs">{model.name}</span>
               </Link>
             ))}
           </nav>
