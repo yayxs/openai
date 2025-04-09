@@ -10,7 +10,7 @@ export default function ModelList({ models }: ModelListProps) {
   if (!models || models.length === 0) {
     return (
       <div className="text-center py-10 text-gray-500">
-        该模型提供商暂时没有可用的模型数据
+        
       </div>
     );
   }

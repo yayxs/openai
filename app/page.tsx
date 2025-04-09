@@ -1,5 +1,5 @@
 import ModelList from '@/components/ModelList';
-import Header from '@/components/Header';
+import Link from 'next/link';
 
 // 定义模型数据项的类型
 export interface ModelItem {
@@ -364,16 +364,19 @@ const modelProviders = [
   },
 ];
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  // 从searchParams获取选中的模型索引，如果没有则默认为0
-  const modelIndex = typeof searchParams.model === 'string' 
-    ? parseInt(searchParams.model) 
+// Define props interface for the Home page according to Next.js 15+ docs
+interface HomePageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function Home({ searchParams }: HomePageProps) {
+  // Await the searchParams promise before accessing its properties
+  const resolvedSearchParams = await searchParams;
+  const modelParam = resolvedSearchParams.model;
+  const modelIndex = typeof modelParam === 'string' 
+    ? parseInt(modelParam) 
     : 0;
-  
+
   // 确保modelIndex是有效的
   const selectedModelIndex = isNaN(modelIndex) || modelIndex < 0 || modelIndex >= modelProviders.length 
     ? 0 
@@ -381,21 +384,47 @@ export default function Home({
 
   return (
     <>
-      <Header selectedIndex={selectedModelIndex} />
-      <div className='bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6'>
-        <h2 className='text-xl font-bold mb-4 flex items-center'>
-          <img 
-            src={modelProviders[selectedModelIndex].logo} 
-            alt={modelProviders[selectedModelIndex].name} 
-            className="w-6 h-6 mr-2"
-          />
-          <span style={{ color: modelProviders[selectedModelIndex].color }}>
-            {modelProviders[selectedModelIndex].name} 模型列表
-          </span>
-        </h2>
+      <div className="flex">
+        {/* 左侧悬浮模型图标 */}
+        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-6 bg-white p-3 rounded-full shadow-md z-10">
+          {modelProviders.map((provider, index) => (
+            <Link 
+              key={provider.id} 
+              href={`/?model=${index}`}
+              className={`transition-all duration-200 hover:scale-110 ${index === selectedModelIndex ? 'scale-110 ring-2 ring-offset-2' : 'opacity-70'}`}
+              style={{ 
+                borderRadius: '50%', 
+                padding: '8px'
+              }}
+            >
+              <img 
+                src={provider.logo} 
+                alt={provider.name} 
+                className="w-8 h-8" 
+                title={provider.name}
+              />
+            </Link>
+          ))}
+        </div>
         
-        {/* 模型列表组件 */}
-        <ModelList models={modelsData[selectedModelIndex]} />
+        {/* 主要内容区 */}
+        <div className="ml-24 flex-1">
+          <div className='bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6'>
+            <h2 className='text-xl font-bold mb-4 flex items-center'>
+              <img 
+                src={modelProviders[selectedModelIndex].logo} 
+                alt={modelProviders[selectedModelIndex].name} 
+                className="w-6 h-6 mr-2"
+              />
+              <span style={{ color: modelProviders[selectedModelIndex].color }}>
+                {modelProviders[selectedModelIndex].name} 模型列表
+              </span>
+            </h2>
+            
+            {/* 模型列表组件 */}
+            <ModelList models={modelsData[selectedModelIndex]} />
+          </div>
+        </div>
       </div>
     </>
   );
